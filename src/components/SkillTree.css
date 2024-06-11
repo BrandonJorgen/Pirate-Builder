@@ -1,0 +1,9 @@
+.skill-tree
+{
+    background-image: url("src/assets/Splash.png");
+    background-position-x: 50%;
+    background-position-y: 25%;
+    display:grid;
+    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: repeat(11, 1fr);
+}
