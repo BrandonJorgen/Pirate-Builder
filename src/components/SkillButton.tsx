@@ -1,4 +1,5 @@
 import "./SkillButton.css"
+import Tooltip from "./Tooltip"
 
 interface SkillButtonProps
 {
@@ -8,8 +9,11 @@ interface SkillButtonProps
     buttonType: number, // 1 = basic, 2 = multi-path, 3 = choice
     icon: string,
     startsDisabled: string, // "0" || "1"
+    startsSelected: boolean,
+    canBePressed: boolean,
     connectedButtons: number[],
-    handleClick: (index: number, connectedButtons: number[]) => void
+    connectedLines: number[],
+    handleClick: (index: number, connectedButtons: number[], connectedLines: number[]) => void
 }
 
 export default function SkillButton({
@@ -19,7 +23,10 @@ export default function SkillButton({
      buttonType, 
      icon, 
      startsDisabled, 
+     startsSelected,
+     canBePressed,
      connectedButtons, 
+     connectedLines,
      handleClick 
     }: SkillButtonProps)
 {
@@ -37,31 +44,43 @@ export default function SkillButton({
         {
             skillButtons[index].setAttribute('data-disabled', "0")
         }
+
+        if (startsSelected === true)
+        {
+            skillButtons[index].setAttribute('data-selected', "1")
+        }
     }, 100)
 
     function onClick()
     {
-        //Basic and Multipath button
-        if (buttonType === 0 || 1) {
-            //Button isn't disabled
-            if (skillButtons[index].getAttribute("data-disabled") === "0")
-            {
-                if (skillButtons[index].getAttribute("data-selected") === "0")
+        if (canBePressed !== false) {
+            //Basic and Multipath button
+            if (buttonType === 0 || 1) {
+                //Button isn't disabled
+                if (skillButtons[index].getAttribute("data-disabled") === "0")
                 {
-                    skillButtons[index].setAttribute('data-selected', "1")
+                    if (skillButtons[index].getAttribute("data-selected") === "0")
+                    {
+                        skillButtons[index].setAttribute('data-selected', "1")
+                    }
+                    else
+                    {
+                        skillButtons[index].setAttribute('data-selected', "0")
+                    }
+        
+                    handleClick(index, connectedButtons, connectedLines)
                 }
-                else
-                {
-                    skillButtons[index].setAttribute('data-selected', "0")
-                }
-    
-                handleClick(index, connectedButtons)
             }
         }
     }
 
+    function onHover()
+    {
+        // Tell tooltip to show
+    }
+
     return (
-        <div className="skill-button" data-index={index} data-row={positionRow} data-column={positionColumn} data-button-type={buttonType} data-connection-count={0} data-selected="0" data-disabled={startsDisabled} data-connected-buttons={connectedButtons} onClick={onClick}>
+        <div className="skill-button" data-index={index} data-row={positionRow} data-column={positionColumn} data-button-type={buttonType} data-connection-count={0} data-selected="0" data-disabled={startsDisabled} data-connected-buttons={connectedButtons} data-connected-lines={connectedLines} onClick={onClick} onMouseOver={onHover}>
             <img className="skill-button-icon" src={icon} alt="icon" />
         </div>
     )

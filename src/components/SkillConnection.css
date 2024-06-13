@@ -1,0 +1,10 @@
+.skill-connection
+{
+    background-image: url('src/assets/Skill_Connection_Bar.png');
+    position: absolute;
+}
+
+.skill-connection[data-active="0"]
+{
+    filter: grayscale(100%);
+}

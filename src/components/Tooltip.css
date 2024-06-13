@@ -1,0 +1,16 @@
+.tooltip .tooltip-title
+{
+    position: relative;
+    display: inline-block;
+    visibility: visible;
+    min-width: 100px;
+    min-height: 100px;
+    text-align: center;
+    color: #fff;
+}
+
+.tooltip:hover
+{
+    visibility: visible;
+    z-index: 1;
+}
