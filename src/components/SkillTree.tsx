@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useRef, useState } from 'react'
 import SkillButton from './SkillButton'
 import SkillConnection from './SkillConnection'
 import './SkillTree.css'
@@ -12,6 +12,8 @@ export default function SkillTree()
 
     let lines: HTMLCollectionOf<Element>
 
+    let tempCount = useRef(0)
+
     const [ count, setCount] = useState(0)
 
     setTimeout(() => {
@@ -24,6 +26,15 @@ export default function SkillTree()
 
     function handleClick(index:number, connectedButtons: number[], connectedLines: number[])
     {
+        if (skillButtons[index].getAttribute("data-selected") === "0")
+        {
+            DecrementCount()
+        }
+        
+        if (skillButtons[index].getAttribute("data-selected") === "1")
+        {
+            IncrementCount()
+        }
 
         UpdateConnections(index, connectedButtons, connectedLines)
             
@@ -34,7 +45,6 @@ export default function SkillTree()
         //Button is pressed
         if (skillButtons[index].getAttribute("data-selected") === "1")
         {
-            IncrementCount()
 
             // SKILL BUTTONS
 
@@ -88,9 +98,12 @@ export default function SkillTree()
                     //Basic button type disable and deselect
                     if (skillButtons[connectedButtons[i]].getAttribute("data-button-type") === "0") 
                     {
-                        skillButtons[connectedButtons[i]].setAttribute("data-selected", "0")
-                        skillButtons[connectedButtons[i]].setAttribute("data-disabled", "1")
-                        DecrementCount()
+                        if (skillButtons[connectedButtons[i]].getAttribute("data-selected") === "1")
+                        {
+                            skillButtons[connectedButtons[i]].setAttribute("data-selected", "0")
+                            skillButtons[connectedButtons[i]].setAttribute("data-disabled", "1")
+                            DecrementCount()
+                        }
                     }
 
                     UpdateLines(index, connectedLines)
@@ -115,9 +128,12 @@ export default function SkillTree()
                             // check if the "connection count" is 0, if so then deselect and disable the button
                             if (tempNumber <= 0)
                             {
-                                skillButtons[connectedButtons[i]].setAttribute("data-selected", "0")
-                                skillButtons[connectedButtons[i]].setAttribute("data-disabled", "1")
-                                DecrementCount()
+                                if (skillButtons[connectedButtons[i]].getAttribute("data-selected") === "1")
+                                {
+                                    skillButtons[connectedButtons[i]].setAttribute("data-selected", "0")
+                                    skillButtons[connectedButtons[i]].setAttribute("data-disabled", "1")
+                                    DecrementCount()
+                                }
                             }
                         }
                     }
@@ -196,12 +212,14 @@ export default function SkillTree()
 
     function IncrementCount()
     {
-        setCount(count + 1)
+        tempCount.current = tempCount.current + 1
+        setCount(tempCount.current)
     }
 
     function DecrementCount()
     {
-        setCount(count - 1)
+        tempCount.current = tempCount.current - 1
+        setCount(tempCount.current)
     }
 
     return(
