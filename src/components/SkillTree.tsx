@@ -1,4 +1,4 @@
-import { createContext, useRef, useState } from 'react'
+import { createContext, useState } from 'react'
 import SkillButton from './SkillButton'
 import SkillConnection from './SkillConnection'
 import './SkillTree.css'

@@ -1,3 +1,4 @@
+import { useState } from "react"
 import "./SkillButton.css"
 import Tooltip from "./Tooltip"
 
@@ -30,26 +31,36 @@ export default function SkillButton({
      handleClick 
     }: SkillButtonProps)
 {
-
+    const [setup, setSetup] = useState(false)
     let skillButtons: HTMLCollectionOf<Element>
 
     setTimeout(() => {
+
         skillButtons = document.getElementsByClassName("skill-button")
 
-        if (startsDisabled === "1")
-        {
-            skillButtons[index].setAttribute('data-disabled', "1")
-        }
-        else
-        {
-            skillButtons[index].setAttribute('data-disabled', "0")
-        }
-
-        if (startsSelected === true)
-        {
-            skillButtons[index].setAttribute('data-selected', "1")
+        if (setup === false) {
+            startup()
         }
     }, 100)
+
+    function startup()
+    {
+        if (startsDisabled === "1")
+            {
+                skillButtons[index].setAttribute('data-disabled', "1")
+            }
+            else
+            {
+                skillButtons[index].setAttribute('data-disabled', "0")
+            }
+    
+            if (startsSelected === true)
+            {
+                skillButtons[index].setAttribute('data-selected', "1")
+            }
+
+            setSetup(true)
+    }
 
     function onClick()
     {
