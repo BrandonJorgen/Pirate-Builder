@@ -1,4 +1,4 @@
-import SkillTree from './SkillTree'
+import ArchetypeSkillTreeSelector from './ArchetypeSkillTreeSelector'
 
 function SkillTreeMenu()
 {
@@ -7,7 +7,7 @@ function SkillTreeMenu()
 
     return(
     <div className='skill-tree-menu'>
-        <SkillTree />
+        <ArchetypeSkillTreeSelector />
     </div>
     )
 }

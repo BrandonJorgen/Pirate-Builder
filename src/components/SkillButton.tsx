@@ -14,6 +14,16 @@ interface SkillButtonProps
     canBePressed: boolean,
     connectedButtons: number[],
     connectedLines: number[],
+    tooltipSortClass: string,
+    tooltipSide: string,
+    tooltipName: string,
+    tooltipCost: string,
+    tooltipRange: string,
+    tooltipCooldown: string,
+    tooltipUseOrCast: string,
+    tooltipCastTime: string,
+    tooltipResource: string,
+    tooltipDescription: string,
     handleClick: (index: number, connectedButtons: number[], connectedLines: number[]) => void
 }
 
@@ -28,15 +38,29 @@ export default function SkillButton({
      canBePressed,
      connectedButtons, 
      connectedLines,
+     tooltipSortClass,
+     tooltipSide,
+     tooltipName,
+     tooltipCost,
+     tooltipRange,
+     tooltipCooldown,
+     tooltipUseOrCast = "use",
+     tooltipCastTime,
+     tooltipResource,
+     tooltipDescription,
      handleClick 
     }: SkillButtonProps)
 {
     const [setup, setSetup] = useState(false)
     let skillButtons: HTMLCollectionOf<Element>
 
+    let tooltip: HTMLCollectionOf<Element>
+
     setTimeout(() => {
 
         skillButtons = document.getElementsByClassName("skill-button")
+
+        tooltip = document.getElementsByClassName(tooltipSortClass + "-tooltip")
 
         if (setup === false) {
             startup()
@@ -87,12 +111,18 @@ export default function SkillButton({
 
     function onHover()
     {
-        // Tell tooltip to show
+        tooltip[index].setAttribute("data-show", "1")
+    }
+
+    function onHoverLeave()
+    {
+        tooltip[index].setAttribute("data-show", "0")
     }
 
     return (
-        <div className="skill-button" data-index={index} data-row={positionRow} data-column={positionColumn} data-button-type={buttonType} data-connection-count={0} data-selected="0" data-disabled={startsDisabled} data-connected-buttons={connectedButtons} data-connected-lines={connectedLines} onClick={onClick} onMouseOver={onHover}>
-            <img className="skill-button-icon" src={icon} alt="icon" />
+        <div className="skill-button" id={index.toString()} data-index={index} data-row={positionRow} data-column={positionColumn} data-button-type={buttonType} data-connection-count={0} data-selected="0" data-disabled={startsDisabled} data-connected-buttons={connectedButtons} data-connected-lines={connectedLines} onClick={onClick} onMouseOver={onHover} onMouseLeave={onHoverLeave}>
+            <img className="skill-button-icon" src={icon} alt="icon" draggable="false" />
+            <Tooltip sortClass={tooltipSortClass} index={index} side={tooltipSide} type={0} title={tooltipName} Cost={tooltipCost} range={tooltipRange} cooldown={tooltipCooldown} castTime={tooltipCastTime} description={tooltipDescription} useOrCast={tooltipUseOrCast} resource={tooltipResource} />
         </div>
     )
 }
