@@ -2,7 +2,7 @@
   "name": "pirate-builder",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https:brandonjorgen.github.io/Pirate-Calculator/",
+  "homepage": "https:brandonjorgen.github.io/Pirate-Builder/",
   "type": "module",
   "scripts": {
     "predeploy" : "npm run build",
