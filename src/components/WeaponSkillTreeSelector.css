@@ -1,0 +1,40 @@
+.weapon-skill-tree-selector
+{
+    position: absolute;
+    left: 7%;
+    top: 40%;
+}
+
+.weapon-skill-tree-selector #weapon-selector-buttons
+{
+    position: relative;
+    display: grid;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(3, 60px);
+    align-items: center;
+    gap: 20px;
+    left: 330px;
+    background-color: rgba(0, 0, 0, 0.425);
+    padding: 15px;
+    border-radius: 25px;
+    z-index: 0;
+    white-space: pre-line;
+}
+
+.weapon-skill-tree-selector #weapon-selector-buttons[data-show="0"]
+{
+    visibility: hidden;
+}
+
+#weapon-selector-title
+{
+    position: relative;
+    text-align: center;
+    left: 330px;
+    padding-bottom: 30px;
+}
+
+#weapon-selector-title[data-show="0"]
+{
+    visibility: hidden;
+}

@@ -1,0 +1,42 @@
+.skill-tree-menu
+{
+    background-color: rgba(27, 27, 27, 0.705);
+    min-width: 925px;
+    width: 925px;
+    min-height: 940px;
+    height: 940px;
+}
+
+.react-tabs__tab-list
+{
+    position: absolute;
+}
+
+.react-tabs__tab
+{
+    background-color: black;
+}
+
+.tab-plus
+{
+    display: inline-block;
+    border: 1px solid transparent;
+    border-bottom: none;
+    bottom: -1px;
+    position: relative;
+    list-style: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: rgb(31, 31, 31);
+    font-weight: bold;
+}
+
+.react-tabs__tab--selected
+{
+    background: gray !important;
+}
+
+.react-tabs__tab--selected::after
+{
+    content: none !important;
+}

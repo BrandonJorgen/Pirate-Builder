@@ -15,14 +15,14 @@
     min-height: 850px;
     height: 850px;
     visibility: hidden;
-    left: -135px;
-    top: -370px;
+    left: 0px;
+    top: -290px;
 }
 
 .skill-tree-bg
 {
     position: absolute;
-    background-image: url("src/assets/Splash.png");
+    background-image: url("/Splash.png");
     background-size: cover;
     background-position-x: 50%;
     background-position-y: 25%;
