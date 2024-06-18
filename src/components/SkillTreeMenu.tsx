@@ -3,7 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ArchetypeSkillTreeSelector from './ArchetypeSkillTreeSelector'
 import WeaponSkillTreeSelector from './WeaponSkillTreeSelector'
-import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 export default function SkillTreeMenu()
 {
@@ -71,7 +71,7 @@ export default function SkillTreeMenu()
             <TabPanel>
                 <ArchetypeSkillTreeSelector />
             </TabPanel>
-            {instTabTables.map((tab, i) => (<TabPanel><WeaponSkillTreeSelector key={i} index={i} handleClick={ChangeTabName}/></TabPanel>))}
+            {instTabTables.map((i) => (<TabPanel><WeaponSkillTreeSelector key={i} index={i} handleClick={ChangeTabName}/></TabPanel>))}
             <TabPanel>
             </TabPanel>
         </Tabs>
