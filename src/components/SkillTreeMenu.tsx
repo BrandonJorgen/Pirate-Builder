@@ -3,7 +3,9 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ArchetypeSkillTreeSelector from './ArchetypeSkillTreeSelector'
 import WeaponSkillTreeSelector from './WeaponSkillTreeSelector'
-import { useRef, useState } from 'react'
+import { createContext, useRef, useState } from 'react'
+
+export const archetype = createContext(" ")
 
 export default function SkillTreeMenu()
 {
@@ -13,6 +15,8 @@ export default function SkillTreeMenu()
     let numberOfTabs = useRef(1) // 0 based value
     let [ instTabs, setInstTabs ] =  useState<any[]>([])
     let [ instTabTables, setInstTabTables ] = useState<any[]>([])
+
+    let selectedArchetype = useRef(" ")
 
     setTimeout(() => {
         if (tabIndex === numberOfTabs.current) // The + tab in the array
@@ -49,6 +53,11 @@ export default function SkillTreeMenu()
 
     }
 
+    function AssignArchetype(tree: string)
+    {
+        selectedArchetype.current = tree
+    }
+
     return(
     <div className='skill-tree-menu'>
         <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
@@ -59,7 +68,9 @@ export default function SkillTreeMenu()
             </TabList>
 
             <TabPanel>
-                <ArchetypeSkillTreeSelector />
+                <archetype.Provider value={selectedArchetype.current}>
+                    <ArchetypeSkillTreeSelector handleArchetypeSelected={AssignArchetype} />
+                </archetype.Provider>
             </TabPanel>
             {instTabTables.map((i) => (<TabPanel><WeaponSkillTreeSelector key={i} index={i} handleClick={ChangeTabName}/></TabPanel>))}
             <TabPanel>

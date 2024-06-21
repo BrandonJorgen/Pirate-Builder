@@ -1,11 +1,17 @@
-import { createContext, useRef, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 import SkillTree from "./SkillTree";
 import './ArchetypeSkillTreeSelector.css'
 import BasicButton from "./BasicButton";
+import { archetype } from "./SkillTreeMenu";
+
+interface ArchetypeSelectorProps
+{
+    handleArchetypeSelected: (tree:string) => void,
+}
 
 export const ArchetypeSelected = createContext("")
 
-export default function ArchetypeSkillTreeSelector()
+export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, }: ArchetypeSelectorProps)
 {
 
     const tankButtonID: string = "tank-select-button"
@@ -20,6 +26,7 @@ export default function ArchetypeSkillTreeSelector()
     let [ selectedArchetype, setSelectedArchetype ] = useState(" ")
 
     let archetypeSelected = useRef(0)
+    let archetypeContext = useContext(archetype)
 
     let buttonGroup: HTMLElement | null
     let title: HTMLElement | null
@@ -28,21 +35,22 @@ export default function ArchetypeSkillTreeSelector()
         buttonGroup = document.getElementById("archetype-selector-buttons")
         title = document.getElementById("archetype-selector-title")
 
-        if (selectedArchetype !== " ")
+        if (archetypeContext !== " ")
         {
             TreeMemory()  
         }      
     }, 100)
 
     function TreeMemory() {
-        switch (selectedArchetype) {
-            case "Fighter-Skill-Tree":
-                console.log("REMEMBERED FIGHTER")
+        switch (archetypeContext) {
+            case "Fighter":
                 if (buttonGroup !== null)
                     buttonGroup.setAttribute("data-show", "0");
                 if (title !== null)
                     title.setAttribute("data-show", "0");
                 archetypeSelected.current = 1
+                setSelectedArchetype("Fighter-Skill-Tree")
+                handleArchetypeSelected("Fighter")
                 break;
         }
     }
@@ -63,6 +71,7 @@ export default function ArchetypeSkillTreeSelector()
                     buttonGroup.setAttribute("data-show", "0")
                 if (title !== null)
                     title.setAttribute("data-show", "0")
+                handleArchetypeSelected("Fighter")
                 break
 
             case rogueButtonID:
