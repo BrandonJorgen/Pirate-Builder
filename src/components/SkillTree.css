@@ -1,6 +1,7 @@
 .skill-tree#Fighter-Skill-Tree[data-show="1"]
 {
     visibility: visible;
+    top: -310px;
 }
 
 .skill-tree#Fighter-Skill-Tree
@@ -10,13 +11,11 @@
     grid-template-rows: repeat(10, 1fr);
     grid-template-columns: repeat(12, 1fr);
     gap: 30px;
-    min-width: 850px;
-    width: 850px;
+    min-width: 925px;
+    width: 925px;
     min-height: 850px;
     height: 850px;
     visibility: hidden;
-    left: 0px;
-    top: -290px;
 }
 
 .skill-tree-bg

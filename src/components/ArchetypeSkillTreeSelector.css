@@ -1,8 +1,7 @@
 .archetype-skill-tree-selector
 {
     position: absolute;
-    left: 7%;
-    top: 40%;
+    top: 350px;
 }
 
 .archetype-skill-tree-selector #archetype-selector-buttons

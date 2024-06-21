@@ -12,6 +12,11 @@
     position: absolute;
 }
 
+.react-tabs__tab-panel
+{
+    position: absolute;
+}
+
 .react-tabs__tab
 {
     background-color: black;

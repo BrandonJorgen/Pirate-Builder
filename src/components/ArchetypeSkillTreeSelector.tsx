@@ -37,6 +37,7 @@ export default function ArchetypeSkillTreeSelector()
     function TreeMemory() {
         switch (selectedArchetype) {
             case "Fighter-Skill-Tree":
+                console.log("REMEMBERED FIGHTER")
                 if (buttonGroup !== null)
                     buttonGroup.setAttribute("data-show", "0");
                 if (title !== null)

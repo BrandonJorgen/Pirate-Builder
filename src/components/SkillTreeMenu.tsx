@@ -8,16 +8,6 @@ import { useRef, useState } from 'react'
 export default function SkillTreeMenu()
 {
 
-    //TODO: Tab system for multiple skilltree viewing 
-
-    // An array of every tab (should start at 1 (0 based) to account for Archetype and + tab)
-    // A state of the currently selected tab (should not be any longer than the tab array)
-    // If the + tab is selected through the selected state, create a new tab and swap our selected state to the new tab
-
-    // What does an instanced TAB look like?
-    // <Tab> NAME OF THE WEAPON OR WEAPON SELECTOR </Tab>
-    // How the fuck do I change this text FROM THE CHILD :(
-
     const [ tabIndex, setTabIndex ] = useState(0)
 
     let numberOfTabs = useRef(1) // 0 based value
@@ -45,7 +35,7 @@ export default function SkillTreeMenu()
         console.log("Index: " + index + ", Name: " + name)
 
         let tempArray = instTabs.map((tab, i) => {
-            if (i === index)
+            if (i === index - 1)
             {
                 return name
             }

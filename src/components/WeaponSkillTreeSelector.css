@@ -1,8 +1,7 @@
 .weapon-skill-tree-selector
 {
     position: absolute;
-    left: 7%;
-    top: 40%;
+    top: 350px;
 }
 
 .weapon-skill-tree-selector #weapon-selector-buttons
