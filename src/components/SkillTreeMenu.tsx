@@ -18,6 +18,12 @@ export default function SkillTreeMenu()
 
     let selectedArchetype = useRef(" ")
 
+    let archetypeTreeButtonMemory = useRef([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+    let archetypePointTrackerValue = useRef(0)
+
+    // Array of skill tree memories, one item for each instantiated skill tree (Wand has 47 buttons)
+
     setTimeout(() => {
         if (tabIndex === numberOfTabs.current) // The + tab in the array
         {
@@ -28,7 +34,6 @@ export default function SkillTreeMenu()
 
     function AddTab()
     {
-        console.log("ADD TAB")
         setInstTabs((instTabs: any[]) => [...instTabs, "Weapon"])
         setInstTabTables((instTabTables: any[]) => [...instTabTables, numberOfTabs.current - 1])
         numberOfTabs.current++ //This should be ran at the end of this code block just to make sure everything is set up correctly
@@ -36,7 +41,6 @@ export default function SkillTreeMenu()
 
     function ChangeTabName(index: number, name: string)
     {
-        console.log("Index: " + index + ", Name: " + name)
 
         let tempArray = instTabs.map((tab, i) => {
             if (i === index - 1)
@@ -58,6 +62,16 @@ export default function SkillTreeMenu()
         selectedArchetype.current = tree
     }
 
+    function GetArchetypeButtonMemory(array: number[])
+    {
+        archetypeTreeButtonMemory.current = array
+    }
+
+    function GetArchetypePointTrackingValue(value: number)
+    {
+        archetypePointTrackerValue.current += value
+    }
+
     return(
     <div className='skill-tree-menu'>
         <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
@@ -69,7 +83,7 @@ export default function SkillTreeMenu()
 
             <TabPanel>
                 <archetype.Provider value={selectedArchetype.current}>
-                    <ArchetypeSkillTreeSelector handleArchetypeSelected={AssignArchetype} />
+                    <ArchetypeSkillTreeSelector handleArchetypeSelected={AssignArchetype} skillTreeMemoryButtonMemory={archetypeTreeButtonMemory.current} skillTreeFeedButtonMemoryFunction={GetArchetypeButtonMemory} pointTrackerValue={archetypePointTrackerValue.current} pointTrackerValueFunction={GetArchetypePointTrackingValue} />
                 </archetype.Provider>
             </TabPanel>
             {instTabTables.map((i) => (<TabPanel><WeaponSkillTreeSelector key={i} index={i} handleClick={ChangeTabName}/></TabPanel>))}

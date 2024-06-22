@@ -7,11 +7,15 @@ import { archetype } from "./SkillTreeMenu";
 interface ArchetypeSelectorProps
 {
     handleArchetypeSelected: (tree:string) => void,
+    skillTreeMemoryButtonMemory: number[],
+    skillTreeFeedButtonMemoryFunction: (array: number[]) => void,
+    pointTrackerValue: number,
+    pointTrackerValueFunction: (value: number) => void,
 }
 
 export const ArchetypeSelected = createContext("")
 
-export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, }: ArchetypeSelectorProps)
+export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, skillTreeMemoryButtonMemory, skillTreeFeedButtonMemoryFunction, pointTrackerValue, pointTrackerValueFunction, }: ArchetypeSelectorProps)
 {
 
     const tankButtonID: string = "tank-select-button"
@@ -120,7 +124,7 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, }:
             </div>
 
             <ArchetypeSelected.Provider value={selectedArchetype}>
-                <SkillTree />
+                <SkillTree buttonMemory={skillTreeMemoryButtonMemory} feedMemoryFunction={skillTreeFeedButtonMemoryFunction} pointTrackerValue={pointTrackerValue} feedPointTrackerValue={pointTrackerValueFunction} />
             </ArchetypeSelected.Provider>
         </div>
     )

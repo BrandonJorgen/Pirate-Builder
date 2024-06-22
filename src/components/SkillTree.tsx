@@ -5,19 +5,33 @@ import './SkillTree.css'
 import SkillPointTracker from './SkillPointTracker'
 import { ArchetypeSelected } from './ArchetypeSkillTreeSelector'
 
+interface SkillTreeProps
+{
+    buttonMemory: number[],
+    feedMemoryFunction: (array: number[]) => void,
+    pointTrackerValue: number,
+    feedPointTrackerValue: (value: number) => void,
+}
+
 export const skillPointCount = createContext(0)
 
-export default function SkillTree()
+export default function SkillTree({ buttonMemory, feedMemoryFunction, pointTrackerValue, feedPointTrackerValue, }: SkillTreeProps)
 {
     let skillButtons: HTMLCollectionOf<Element>
 
     let lines: HTMLCollectionOf<Element>
 
-    let tempCount = useRef(0)
+    let tempCount = useRef(pointTrackerValue)
 
-    const [ count, setCount] = useState(0)
+    const [ count, setCount] = useState(pointTrackerValue)
 
     let selectedArchetype = useContext(ArchetypeSelected)
+
+    let buttonMemoryArray = buttonMemory
+
+    let useMemory = useRef(1) //used to determine if we need to access the button memory or not
+
+    console.log("Skill Tree just started from the top")
 
     setTimeout(() => {
 
@@ -31,7 +45,48 @@ export default function SkillTree()
 
         treeToShow?.setAttribute("data-show", "1")
 
+        if (useMemory.current === 1) 
+        {
+            TreeMemory()
+        }
+        
     }, 100)
+
+    function TreeMemory()
+    {
+        useMemory.current = 0
+
+        // Loop through the memory array to determine what state each button should be in, Pressed or not
+        for (let i = 0; i < buttonMemoryArray.length; i++)
+        {
+            // Does this skill tree use every item in the memory array?
+            if (i > skillButtons.length)
+                break
+
+            for (let o = 0; o < skillButtons.length; o++)
+            {
+                // Is this the same button assigned to this position in the memory array?
+                if (i === o)
+                {
+                    if (buttonMemoryArray[i] === 0)
+                        continue
+
+                    console.log("current index in memory: " + i + ", the current button: " + o)
+
+                    skillButtons[o].setAttribute("data-selected", "1")
+
+                    let connectedArray = skillButtons[o].getAttribute("data-connected-buttons")?.split(',').map(Number)
+
+                    let connectedLineArray = skillButtons[o].getAttribute("data-connected-lines")?.split(',').map(Number)
+
+                    if (connectedArray !== undefined && connectedLineArray !== undefined)
+                    {
+                        UpdateConnections(o, connectedArray, connectedLineArray)
+                    }
+                }
+            }
+        }
+    }
     
 
     function handleClick(index:number, connectedButtons: number[], connectedLines: number[])
@@ -78,20 +133,24 @@ export default function SkillTree()
                             let tempNumber = Number(skillButtons[connectedButtons[i]].getAttribute("data-connection-count"))
 
                             // ++ the variable
-                            tempNumber++
+                            ++tempNumber
 
                             // convert the variable back into a string and set the attribute
                             skillButtons[connectedButtons[i]].setAttribute("data-connection-count", tempNumber.toString())
                         }
                     }
 
-                    UpdateLines(index, connectedLines)
                 }
+                UpdateLines(index, connectedLines)
             }
+
+            buttonMemoryArray[index] = 1
+            feedMemoryFunction(buttonMemoryArray)
         }
         //Button isn't pressed
         else
         {
+
             // Disable and Deselect connected buttons
             if (connectedButtons.length > 0)
             {
@@ -120,8 +179,6 @@ export default function SkillTree()
                         }
                     }
 
-                    UpdateLines(index, connectedLines)
-
                     //Multipath button type disable and deselect
                     if (skillButtons[connectedButtons[i]].getAttribute("data-button-type") === "1")
                     {
@@ -131,13 +188,15 @@ export default function SkillTree()
                             let tempNumber = Number(skillButtons[connectedButtons[i]].getAttribute("data-connection-count"))
 
                             // -- the variable
-                            tempNumber--
+                            --tempNumber
 
                             if (tempNumber < 0)
                                 tempNumber = 0
 
                             // convert the variable back into a string and set the attribute
                             skillButtons[connectedButtons[i]].setAttribute("data-connection-count", tempNumber.toString())
+
+                            console.log("How many times did I get called? --")
 
                             // check if the "connection count" is 0, if so then deselect and disable the button
                             if (tempNumber <= 0)
@@ -164,9 +223,14 @@ export default function SkillTree()
                     let connectedLineArray = skillButtons[connectedButtons[i]].getAttribute("data-connected-lines")?.split(',').map(Number)
 
                     if (connectedArray !== undefined && connectedLineArray !== undefined)
-                            UpdateConnections(connectedButtons[i], connectedArray, connectedLineArray)
+                        UpdateConnections(connectedButtons[i], connectedArray, connectedLineArray)
                 }
             }
+
+            UpdateLines(index, connectedLines)
+
+            buttonMemoryArray[index] = 0
+            feedMemoryFunction(buttonMemoryArray)
         }
     }
 
@@ -176,19 +240,25 @@ export default function SkillTree()
 
         // Button Pressed
         if (skillButtons[index].getAttribute("data-selected") === "1") {
+            // Does this button have any connection lines?
             if (connectionLines.length > 0)
             {
                 for (let i = 0; i < connectionLines.length; i++)
                 {
                     if (lines[connectionLines[i]] === undefined)
                         return
-                        
-                    lines[connectionLines[i]].setAttribute("data-active", "1")
 
                     if (lines[connectionLines[i]].getAttribute("data-multi") === "1")
+                    {
                         tempCount = Number(lines[connectionLines[i]].getAttribute("data-connection-count"))
-                        tempCount++
+
+                        ++tempCount
+
                         lines[connectionLines[i]].setAttribute("data-connection-count", tempCount.toString())
+                    }
+
+                    lines[connectionLines[i]].setAttribute("data-active", "1")
+                        
                 }
             }
         }
@@ -213,7 +283,7 @@ export default function SkillTree()
                     else
                     {
                         tempCount = Number(lines[connectionLines[i]].getAttribute("data-connection-count"))
-                        tempCount--
+                        --tempCount
 
                         if ( tempCount < 0)
                             tempCount = 0
@@ -231,13 +301,17 @@ export default function SkillTree()
     function IncrementCount()
     {
         tempCount.current = tempCount.current + 1
+        feedPointTrackerValue(1)
         setCount(tempCount.current)
+        
     }
 
     function DecrementCount()
     {
         tempCount.current = tempCount.current - 1
+        feedPointTrackerValue(-1)
         setCount(tempCount.current)
+        
     }
 
     return(
