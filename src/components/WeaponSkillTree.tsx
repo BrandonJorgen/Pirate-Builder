@@ -1,6 +1,6 @@
 import { createContext, useContext, useRef, useState } from 'react'
 import SkillButton from './SkillButton'
-import SkillConnection from './SkillConnection'
+//import SkillConnection from './SkillConnection'
 import './WeaponSkillTree.css'
 import SkillPointTracker from './SkillPointTracker'
 import { WeaponSelected } from './WeaponSkillTreeSelector'

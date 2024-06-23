@@ -1,6 +1,6 @@
 import './WeaponSkillTreeSelector.css'
 import BasicButton from "./BasicButton";
-import { createContext, useContext, useRef, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import WeaponSkillTree from './WeaponSkillTree';
 import { weapon } from './SkillTreeMenu';
 
