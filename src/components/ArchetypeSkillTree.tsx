@@ -1,7 +1,7 @@
 import { createContext, useContext, useRef, useState } from 'react'
 import SkillButton from './SkillButton'
 import SkillConnection from './SkillConnection'
-import './SkillTree.css'
+import './ArchetypeSkillTree.css'
 import SkillPointTracker from './SkillPointTracker'
 import { ArchetypeSelected } from './ArchetypeSkillTreeSelector'
 
@@ -13,9 +13,9 @@ interface SkillTreeProps
     feedPointTrackerValue: (value: number) => void,
 }
 
-export const skillPointCount = createContext(0)
+export const archetypeSkillPointCount = createContext(0)
 
-export default function SkillTree({ buttonMemory, feedMemoryFunction, pointTrackerValue, feedPointTrackerValue, }: SkillTreeProps)
+export default function ArchetypeSkillTree({ buttonMemory, feedMemoryFunction, pointTrackerValue, feedPointTrackerValue, }: SkillTreeProps)
 {
     let skillButtons: HTMLCollectionOf<Element>
 
@@ -30,8 +30,6 @@ export default function SkillTree({ buttonMemory, feedMemoryFunction, pointTrack
     let buttonMemoryArray = buttonMemory
 
     let useMemory = useRef(1) //used to determine if we need to access the button memory or not
-
-    console.log("Skill Tree just started from the top")
 
     setTimeout(() => {
 
@@ -319,9 +317,9 @@ export default function SkillTree({ buttonMemory, feedMemoryFunction, pointTrack
         <div className='skill-tree' id='Fighter-Skill-Tree' data-show="0">
             <div className='skill-tree-bg' />
 
-            <skillPointCount.Provider value={count}>
-                <SkillPointTracker id={'fighter-tree-skill-point-tracker'} maxPoints={31} />
-            </skillPointCount.Provider>
+            <archetypeSkillPointCount.Provider value={count}>
+                <SkillPointTracker id={'fighter-tree-skill-point-tracker'} maxPoints={31} parentName={'Archetype'} />
+            </archetypeSkillPointCount.Provider>
 
             <SkillConnection index={0} isMulti={'1'} styleLeft={"333px"} styleTop={"635px"} styleWidth={'70px'} styleRotation={'0'} />
             <SkillConnection index={1} isMulti={'1'} styleLeft={"268px"} styleTop={"640px"} styleWidth={'125px'} styleRotation={'90'} />

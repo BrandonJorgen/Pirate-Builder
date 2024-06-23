@@ -1,6 +1,7 @@
 import { useState } from "react"
 import "./SkillButton.css"
 import Tooltip from "./Tooltip"
+import SkillChoicesMenu from "./SkillChoicesMenu"
 
 interface SkillButtonProps
 {
@@ -56,11 +57,15 @@ export default function SkillButton({
 
     let tooltip: HTMLCollectionOf<Element>
 
+    let choiceMenu: HTMLCollectionOf<Element>
+
     setTimeout(() => {
 
         skillButtons = document.getElementsByClassName("skill-button")
 
         tooltip = document.getElementsByClassName(tooltipSortClass + "-tooltip")
+
+        choiceMenu = document.getElementsByClassName("skill-choice-menu")
 
         if (setup === false) {
             startup()
@@ -106,22 +111,45 @@ export default function SkillButton({
                     handleClick(index, connectedButtons, connectedLines)
                 }
             }
+
+            // Choice button
+            if (buttonType === 2)
+            {
+                // Display the child choice component
+
+                // * IN A NEW FUNCTION *
+
+                // [one of the choices is selected]
+
+                // feed the icon, title text, and description text to skill button
+
+                // call handleClick
+            }
         }
     }
 
     function onHover()
     {
         tooltip[index].setAttribute("data-show", "1")
+
+        // button type 2 shit
+        // don't show tooltip unless a choice has been made
+        if (buttonType === 2)
+        {
+            choiceMenu[index].setAttribute("data-show", "1")
+        }
     }
 
     function onHoverLeave()
     {
         tooltip[index].setAttribute("data-show", "0")
+        choiceMenu[index].setAttribute("data-show", "0")
     }
 
     return (
         <div className="skill-button" id={index.toString()} data-index={index} data-row={positionRow} data-column={positionColumn} data-button-type={buttonType} data-connection-count={0} data-selected="0" data-disabled={startsDisabled} data-connected-buttons={connectedButtons} data-connected-lines={connectedLines} onClick={onClick} onMouseOver={onHover} onMouseLeave={onHoverLeave}>
             <img className="skill-button-icon" src={icon} alt="icon" draggable="false" />
+            <SkillChoicesMenu />
             <Tooltip sortClass={tooltipSortClass} index={index} side={tooltipSide} type={0} title={tooltipName} Cost={tooltipCost} range={tooltipRange} cooldown={tooltipCooldown} castTime={tooltipCastTime} description={tooltipDescription} useOrCast={tooltipUseOrCast} resource={tooltipResource} />
         </div>
     )

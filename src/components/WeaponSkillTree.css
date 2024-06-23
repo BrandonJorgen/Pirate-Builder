@@ -1,0 +1,19 @@
+.skill-tree#Greatsword-Skill-Tree[data-show="1"]
+{
+    visibility: visible;
+    top: -310px;
+}
+
+.skill-tree#Greatsword-Skill-Tree
+{
+    position: absolute;
+    display:grid;
+    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: repeat(12, 1fr);
+    gap: 30px;
+    min-width: 925px;
+    width: 925px;
+    min-height: 850px;
+    height: 850px;
+    visibility: hidden;
+}

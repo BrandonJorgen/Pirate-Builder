@@ -1,8 +1,8 @@
 import { createContext, useContext, useRef, useState } from "react";
-import SkillTree from "./SkillTree";
 import './ArchetypeSkillTreeSelector.css'
 import BasicButton from "./BasicButton";
 import { archetype } from "./SkillTreeMenu";
+import ArchetypeSkillTree from "./ArchetypeSkillTree";
 
 interface ArchetypeSelectorProps
 {
@@ -124,7 +124,7 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
             </div>
 
             <ArchetypeSelected.Provider value={selectedArchetype}>
-                <SkillTree buttonMemory={skillTreeMemoryButtonMemory} feedMemoryFunction={skillTreeFeedButtonMemoryFunction} pointTrackerValue={pointTrackerValue} feedPointTrackerValue={pointTrackerValueFunction} />
+                <ArchetypeSkillTree buttonMemory={skillTreeMemoryButtonMemory} feedMemoryFunction={skillTreeFeedButtonMemoryFunction} pointTrackerValue={pointTrackerValue} feedPointTrackerValue={pointTrackerValueFunction} />
             </ArchetypeSelected.Provider>
         </div>
     )

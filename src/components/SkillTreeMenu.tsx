@@ -6,23 +6,29 @@ import WeaponSkillTreeSelector from './WeaponSkillTreeSelector'
 import { createContext, useRef, useState } from 'react'
 
 export const archetype = createContext(" ")
+export const weapon = createContext([" "])
 
 export default function SkillTreeMenu()
 {
 
     const [ tabIndex, setTabIndex ] = useState(0)
 
-    let numberOfTabs = useRef(1) // 0 based value
-    let [ instTabs, setInstTabs ] =  useState<any[]>([])
+    let numberOfTabs = useRef<number>(1) // 0 based value
+    let [ instTabs, setInstTabs ] =  useState<string[]>([])
     let [ instTabTables, setInstTabTables ] = useState<any[]>([])
 
     let selectedArchetype = useRef(" ")
 
     let archetypeTreeButtonMemory = useRef([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
+    let newMemoryArray: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
     let archetypePointTrackerValue = useRef(0)
 
     // Array of skill tree memories, one item for each instantiated skill tree (Wand has 47 buttons)
+    let weaponTreeButtonMemories = useRef<number[][]>([])
+
+    let weaponPointTrackerValueArray = useRef<number[]>([])
 
     setTimeout(() => {
         if (tabIndex === numberOfTabs.current) // The + tab in the array
@@ -30,20 +36,33 @@ export default function SkillTreeMenu()
             AddTab()
             setTabIndex(numberOfTabs.current - 1) // The tab before the + tab
         }
+
+        if (numberOfTabs.current > 1) {
+            if (tabIndex > 0)
+            {
+                //selectedWeapon.current = instTabs[tabIndex - 1]
+            }
+        }
     }, 100)
 
     function AddTab()
     {
-        setInstTabs((instTabs: any[]) => [...instTabs, "Weapon"])
+        setInstTabs((instTabs: string[]) => [...instTabs, "Weapon"])
         setInstTabTables((instTabTables: any[]) => [...instTabTables, numberOfTabs.current - 1])
+
+        // set up weapon memory for new tab
+        weaponTreeButtonMemories.current[numberOfTabs.current - 1] = newMemoryArray
+        weaponPointTrackerValueArray.current[numberOfTabs.current - 1] = 0
+
         numberOfTabs.current++ //This should be ran at the end of this code block just to make sure everything is set up correctly
     }
 
     function ChangeTabName(index: number, name: string)
     {
+        console.log("A tab was just renamed")
 
         let tempArray = instTabs.map((tab, i) => {
-            if (i === index - 1)
+            if (i === index)
             {
                 return name
             }
@@ -72,12 +91,22 @@ export default function SkillTreeMenu()
         archetypePointTrackerValue.current += value
     }
 
+    function GetWeaponButtonMemory(index: number, array: number[])
+    { 
+        weaponTreeButtonMemories.current[index] = array
+    }
+
+    function GetWeaponPointTrackingValue(index: number, value: number)
+    {
+        weaponPointTrackerValueArray.current[index] += value
+    }
+
     return(
     <div className='skill-tree-menu'>
         <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
             <TabList>
                 <Tab>Archetype</Tab>
-                {instTabs.map((tab, i) => (<Tab key={i}>{tab}</Tab>))}
+                {instTabs.map((tab, i) => (<Tab key={i - 1}>{tab}</Tab>))}
                 <Tab className={"tab-plus"}>+</Tab>
             </TabList>
 
@@ -86,7 +115,14 @@ export default function SkillTreeMenu()
                     <ArchetypeSkillTreeSelector handleArchetypeSelected={AssignArchetype} skillTreeMemoryButtonMemory={archetypeTreeButtonMemory.current} skillTreeFeedButtonMemoryFunction={GetArchetypeButtonMemory} pointTrackerValue={archetypePointTrackerValue.current} pointTrackerValueFunction={GetArchetypePointTrackingValue} />
                 </archetype.Provider>
             </TabPanel>
-            {instTabTables.map((i) => (<TabPanel><WeaponSkillTreeSelector key={i} index={i} handleClick={ChangeTabName}/></TabPanel>))}
+
+            
+            {instTabTables.map((i) => (
+                <TabPanel>
+                    <weapon.Provider value={instTabs}>
+                        <WeaponSkillTreeSelector key={i - 1} index={i - 1} handleClick={ChangeTabName} skillTreeMemoryButtonMemory={weaponTreeButtonMemories.current[i - 1]} skillTreeFeedButtonMemoryFunction={GetWeaponButtonMemory} pointTrackerValue={weaponPointTrackerValueArray.current[i - 1]} pointTrackerValueFunction={GetWeaponPointTrackingValue}/>
+                    </weapon.Provider>
+                </TabPanel>))}
             <TabPanel>
             </TabPanel>
         </Tabs>
