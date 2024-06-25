@@ -1,3 +1,8 @@
+.basic-button
+{
+    cursor: pointer;
+}
+
 .basic-button-icon
 {
     width: 60px;
@@ -75,4 +80,9 @@
     bottom: -60px;
     left: -30px;
     z-index: 10;
+}
+
+.choice-remove-tooltip
+{
+    visibility: hidden;
 }

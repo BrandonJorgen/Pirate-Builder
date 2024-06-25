@@ -12,11 +12,13 @@ interface SkillTreeProps
     feedMemoryFunction: (index: number, array: number[]) => void,
     pointTrackerValue: number,
     feedPointTrackerValue: (index: number, value: number) => void,
+    choiceButtonMemory: number[],
+    feedChoiceButtonMemoryFunction: (index: number, array: number[]) => void,
 }
 
 export const weaponSkillPointCount = createContext(0)
 
-export default function WeaponSkillTree({ index, buttonMemory, feedMemoryFunction, pointTrackerValue, feedPointTrackerValue, }: SkillTreeProps)
+export default function WeaponSkillTree({ index, buttonMemory, feedMemoryFunction, pointTrackerValue, feedPointTrackerValue, choiceButtonMemory, feedChoiceButtonMemoryFunction }: SkillTreeProps)
 {
     let skillButtons: HTMLCollectionOf<Element>
 
@@ -88,7 +90,7 @@ export default function WeaponSkillTree({ index, buttonMemory, feedMemoryFunctio
     }
     
 
-    function handleClick(index:number, connectedButtons: number[], connectedLines: number[])
+    function handleClick(index: number, connectedButtons: number[], connectedLines: number[])
     {
         if (skillButtons[index].getAttribute("data-selected") === "0")
         {
@@ -313,6 +315,12 @@ export default function WeaponSkillTree({ index, buttonMemory, feedMemoryFunctio
         
     }
 
+    function UpdateChoiceMemory(index: number, choice: number)
+    {
+        choiceButtonMemory[index] = choice
+        feedChoiceButtonMemoryFunction(index, choiceButtonMemory)
+    }
+
     return(
     <div className='weapon-skill-tree'>
         <div className='skill-tree' id='Greatsword-Skill-Tree' data-show="0">
@@ -322,8 +330,9 @@ export default function WeaponSkillTree({ index, buttonMemory, feedMemoryFunctio
                 <SkillPointTracker id={'greatsword-tree-skill-point-tracker'} maxPoints={43} parentName={'Weapon'} />
             </weaponSkillPointCount.Provider>
 
-            <SkillButton tooltipSortClass={'skill-tree'} index={0} positionRow={'8'} positionColumn={'6'} buttonType={2} icon={'./icons/skill_Icons/Fighter/LethalBlow_Icon.png'} startsDisabled={"0"} connectedButtons={[]} connectedLines={[]} handleClick={handleClick} startsSelected={false} canBePressed={true} tooltipSide={'bottom'} tooltipName={'Lethal Blow'} tooltipCost={'15'} tooltipRange={'4m'} tooltipCooldown={'10s'} tooltipCastTime={'1.1s'} tooltipDescription={'Deals damage based on the % amount of health the target is missing (up to 300% base damage)'} tooltipUseOrCast={'use'} tooltipResource={'Mana'}  />
-            <SkillButton tooltipSortClass={'skill-tree'} index={1} positionRow={'8'} positionColumn={'7'} buttonType={2} icon={'./icons/skill_Icons/Fighter/LethalBlow_Icon.png'} startsDisabled={"0"} connectedButtons={[]} connectedLines={[]} handleClick={handleClick} startsSelected={false} canBePressed={true} tooltipSide={'bottom'} tooltipName={'Lethal Blow'} tooltipCost={'15'} tooltipRange={'4m'} tooltipCooldown={'10s'} tooltipCastTime={'1.1s'} tooltipDescription={'Deals damage based on the % amount of health the target is missing (up to 300% base damage)'} tooltipUseOrCast={'use'} tooltipResource={'Mana'}  />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      {/* [ICON, NAME, SMALL DESC, TOOLTIP SIDE, COST, RANGE, COOLDOWN, USE OR CAST, CAST TIME, RESOURCE, LONG DESCRIPTION ] */}
+            <SkillButton tooltipSortClass={'skill-tree'} index={0} positionRow={'8'} positionColumn={'6'} buttonType={2} icon={'./icons/skill_Icons/Plus.png'} startsDisabled={"0"} connectedButtons={[]} connectedLines={[]} handleClick={handleClick} startsSelected={false} canBePressed={true} tooltipSide={'bottom'} tooltipName={''} tooltipCost={''} tooltipRange={''} tooltipCooldown={''} tooltipCastTime={''} tooltipDescription={''} tooltipUseOrCast={''} tooltipResource={''} choices={[["./icons/skill_Icons/Greatsword/Deflection.png", "Weapon Training: Deflection", "+Evasion % (Passive)", "right", "", "", "", "use", "", "mana", "Increases your Evasion by 0.5%"], ["./icons/skill_Icons/Greatsword/FollowThrough.png", "Weapon Training: Followthrough", "+Mitigation Penetration % (Passive)", "right", "", "", "", "", "", "mana", "Increases your Mitigation Penetration by 0.5%"], ["./icons/skill_Icons/Greatsword/Power.png", "Weapon Training: Power", "+Critical Damage % (Passive)", "right", "", "", "", "", "", "mana", "Increase your Critical Damage by 0.5%"], ["./icons/skill_Icons/Greatsword/Precision.png", "Weapon Training: Precision", "+Accuracy % (Passive)", "right", "", "", "", "", "", "mana", "Increases your Accuracy by 0.5%"]]} updateChoiceMemoryFunction={UpdateChoiceMemory} choiceMemory={choiceButtonMemory[0]}  />
+            <SkillButton tooltipSortClass={'skill-tree'} index={1} positionRow={'8'} positionColumn={'7'} buttonType={2} icon={'./icons/skill_Icons/Plus.png'} startsDisabled={"0"} connectedButtons={[]} connectedLines={[]} handleClick={handleClick} startsSelected={false} canBePressed={true} tooltipSide={'bottom'} tooltipName={'Lethal Blow'} tooltipCost={'15'} tooltipRange={'4m'} tooltipCooldown={'10s'} tooltipCastTime={'1.1s'} tooltipDescription={'Deals damage based on the % amount of health the target is missing (up to 300% base damage)'} tooltipUseOrCast={'use'} tooltipResource={'Mana'} choices={[["./icons/skill_Icons/Greatsword/Precision.png", "Weapon Training: Precision", "+Accuracy % (Passive)", "left", "", "", "", "", "", "mana", "Increases your Accuracy by 0.5%"], ["./icons/skill_Icons/Greatsword/Precision.png", "Weapon Training: Precision", "+Accuracy % (Passive)", "left", "", "", "", "", "", "mana", "Increases your Accuracy by 0.5%"], ["./icons/skill_Icons/Greatsword/Precision.png", "Weapon Training: Precision", "+Accuracy % (Passive)", "left", "", "", "", "", "", "mana", "Increases your Accuracy by 0.5%"]]} updateChoiceMemoryFunction={UpdateChoiceMemory} choiceMemory={choiceButtonMemory[1]}  />
         </div>
     </div>
     )

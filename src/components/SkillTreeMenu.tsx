@@ -22,13 +22,14 @@ export default function SkillTreeMenu()
     let archetypeTreeButtonMemory = useRef([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
     let newMemoryArray: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    let newChoiceMemoryArray: any[] = [, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ]
 
     let archetypePointTrackerValue = useRef(0)
 
     // Array of skill tree memories, one item for each instantiated skill tree (Wand has 47 buttons)
     let weaponTreeButtonMemories = useRef<number[][]>([])
-
     let weaponPointTrackerValueArray = useRef<number[]>([])
+    let weaponChoiceButtonMemories = useRef<number[][]>([]) // An array in this array should only hold the value of what choice was made. There should be an index for each button, type 2 or not doesn't matter
 
     setTimeout(() => {
         if (tabIndex === numberOfTabs.current) // The + tab in the array
@@ -53,6 +54,7 @@ export default function SkillTreeMenu()
         // set up weapon memory for new tab
         weaponTreeButtonMemories.current[numberOfTabs.current - 1] = newMemoryArray
         weaponPointTrackerValueArray.current[numberOfTabs.current - 1] = 0
+        weaponChoiceButtonMemories.current[numberOfTabs.current - 1] = newChoiceMemoryArray
 
         numberOfTabs.current++ //This should be ran at the end of this code block just to make sure everything is set up correctly
     }
@@ -101,6 +103,11 @@ export default function SkillTreeMenu()
         weaponPointTrackerValueArray.current[index] += value
     }
 
+    function GetWeaponChoiceButtonMemory(index: number, array:number[])
+    {
+        weaponChoiceButtonMemories.current[index] = array
+    }
+
     return(
     <div className='skill-tree-menu'>
         <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
@@ -120,7 +127,7 @@ export default function SkillTreeMenu()
             {instTabTables.map((i) => (
                 <TabPanel>
                     <weapon.Provider value={instTabs}>
-                        <WeaponSkillTreeSelector key={i - 1} index={i - 1} handleClick={ChangeTabName} skillTreeMemoryButtonMemory={weaponTreeButtonMemories.current[i - 1]} skillTreeFeedButtonMemoryFunction={GetWeaponButtonMemory} pointTrackerValue={weaponPointTrackerValueArray.current[i - 1]} pointTrackerValueFunction={GetWeaponPointTrackingValue}/>
+                        <WeaponSkillTreeSelector key={i - 1} index={i - 1} handleClick={ChangeTabName} skillTreeMemoryButtonMemory={weaponTreeButtonMemories.current[i - 1]} skillTreeFeedButtonMemoryFunction={GetWeaponButtonMemory} pointTrackerValue={weaponPointTrackerValueArray.current[i - 1]} pointTrackerValueFunction={GetWeaponPointTrackingValue} choiceButtonMemory={weaponChoiceButtonMemories.current[i - 1]} skillTreeFeedChoiceButtonMemoryFunction={GetWeaponChoiceButtonMemory}/>
                     </weapon.Provider>
                 </TabPanel>))}
             <TabPanel>

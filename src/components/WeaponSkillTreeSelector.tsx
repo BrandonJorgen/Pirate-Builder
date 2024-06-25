@@ -11,11 +11,13 @@ interface WeaponSkillTreeSelectorProps{
     skillTreeFeedButtonMemoryFunction: (index: number, array: number[]) => void,
     pointTrackerValue: number,
     pointTrackerValueFunction: (index: number, value: number) => void,
+    choiceButtonMemory: number[],
+    skillTreeFeedChoiceButtonMemoryFunction: (index: number, array: number[]) => void,
 }
 
 export const WeaponSelected = createContext("")
 
-export default function WeaponSkillTreeSelector({ index = 0, handleClick, skillTreeMemoryButtonMemory, skillTreeFeedButtonMemoryFunction, pointTrackerValue, pointTrackerValueFunction, }: WeaponSkillTreeSelectorProps)
+export default function WeaponSkillTreeSelector({ index = 0, handleClick, skillTreeMemoryButtonMemory, skillTreeFeedButtonMemoryFunction, pointTrackerValue, pointTrackerValueFunction, choiceButtonMemory, skillTreeFeedChoiceButtonMemoryFunction }: WeaponSkillTreeSelectorProps)
 {
     const greatswordButtonID = "greatsword-select-button"
     const wandButtonID = "wand-select-button"
@@ -122,7 +124,7 @@ export default function WeaponSkillTreeSelector({ index = 0, handleClick, skillT
             </div>
 
             <WeaponSelected.Provider value={selectedWeapon}>
-                <WeaponSkillTree index={index} buttonMemory={skillTreeMemoryButtonMemory} feedMemoryFunction={skillTreeFeedButtonMemoryFunction} pointTrackerValue={pointTrackerValue} feedPointTrackerValue={pointTrackerValueFunction} />
+                <WeaponSkillTree index={index} buttonMemory={skillTreeMemoryButtonMemory} feedMemoryFunction={skillTreeFeedButtonMemoryFunction} pointTrackerValue={pointTrackerValue} feedPointTrackerValue={pointTrackerValueFunction} choiceButtonMemory={choiceButtonMemory} feedChoiceButtonMemoryFunction={skillTreeFeedChoiceButtonMemoryFunction} />
             </WeaponSelected.Provider>
             
         </div>

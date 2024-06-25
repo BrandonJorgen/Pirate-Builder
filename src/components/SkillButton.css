@@ -6,16 +6,17 @@
     color: transparent;
     border: none;
     z-index: 0;
+    cursor: pointer;
 }
 
 .skill-button[data-selected="0"]
 {
-    filter: brightness(25%);
+    filter: brightness(50%);
 }
 
 .skill-button:hover
 {
-    filter: grayscale(50%);
+    filter: brightness(75%);
     z-index: 100;
 }
 
@@ -143,5 +144,21 @@
     position: relative;
     width: 60px;
     height: 60px;
+    filter: brightness(100%);
 }
 
+.clear-choice-button
+{
+    scale: .66;
+    position: absolute;
+    left: -60px;
+    top: 0px;
+    visibility: hidden;
+    z-index: 101;
+    filter: brightness(150%) !important;
+}
+
+.clear-choice-button[data-show="1"]
+{
+    visibility: visible;
+}
