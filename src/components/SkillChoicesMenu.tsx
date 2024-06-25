@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import SkillChoice from './SkillChoice'
 import './SkillChoicesMenu.css'
 
@@ -13,7 +13,7 @@ interface SkillChoicesMenuProps
 export default function SkillChoicesMenu({ buttonIndex, side = "bottom", choices, choiceDataReturn }: SkillChoicesMenuProps)
 {
 
-    let [ choicesArray, setChoicesArray ] = useState<string[][]>(choices)
+    let [ choicesArray ] = useState<string[][]>(choices)
 
     let show = "0"
 
@@ -39,7 +39,7 @@ export default function SkillChoicesMenu({ buttonIndex, side = "bottom", choices
             <div className="skill-choice-menu" data-show={show} data-side={side}>
                 
                 <div className='skill-choices' data-choice-amount={choices.length}>
-                    {choicesArray.map((choice, i) => (<SkillChoice key={i} index={i} buttonIndex={buttonIndex} icon={choices[i][0]} name={choices[i][1]} description={choices[i][2]} clickFunction={handleChoiceClick} tooltipSide={choices[i][3]} tooltipName={choices[i][1]} tooltipCost={choices[i][4]} tooltipRange={choices[i][5]} tooltipCooldown={choices[i][6]} tooltipUseOrCast={choices[i][7]} tooltipCastTime={choices[i][8]} tooltipResource={choices[i][9]} tooltipDescription={choices[i][10]}  />))}
+                    {choicesArray.map((_choice, i) => (<SkillChoice key={i} index={i} buttonIndex={buttonIndex} icon={choices[i][0]} name={choices[i][1]} description={choices[i][2]} clickFunction={handleChoiceClick} tooltipSide={choices[i][3]} tooltipName={choices[i][1]} tooltipCost={choices[i][4]} tooltipRange={choices[i][5]} tooltipCooldown={choices[i][6]} tooltipUseOrCast={choices[i][7]} tooltipCastTime={choices[i][8]} tooltipResource={choices[i][9]} tooltipDescription={choices[i][10]}  />))}
                 </div>
                 
             </div>

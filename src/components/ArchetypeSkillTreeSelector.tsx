@@ -11,11 +11,13 @@ interface ArchetypeSelectorProps
     skillTreeFeedButtonMemoryFunction: (array: number[]) => void,
     pointTrackerValue: number,
     pointTrackerValueFunction: (value: number) => void,
+    choiceButtonMemory: number[],
+    skillTreeFeedChoiceButtonMemoryFunction: (index: number, array: number[]) => void,
 }
 
 export const ArchetypeSelected = createContext("")
 
-export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, skillTreeMemoryButtonMemory, skillTreeFeedButtonMemoryFunction, pointTrackerValue, pointTrackerValueFunction, }: ArchetypeSelectorProps)
+export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, skillTreeMemoryButtonMemory, skillTreeFeedButtonMemoryFunction, pointTrackerValue, pointTrackerValueFunction, choiceButtonMemory, skillTreeFeedChoiceButtonMemoryFunction }: ArchetypeSelectorProps)
 {
 
     const tankButtonID: string = "tank-select-button"
@@ -124,7 +126,7 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
             </div>
 
             <ArchetypeSelected.Provider value={selectedArchetype}>
-                <ArchetypeSkillTree buttonMemory={skillTreeMemoryButtonMemory} feedMemoryFunction={skillTreeFeedButtonMemoryFunction} pointTrackerValue={pointTrackerValue} feedPointTrackerValue={pointTrackerValueFunction} />
+                <ArchetypeSkillTree buttonMemory={skillTreeMemoryButtonMemory} feedMemoryFunction={skillTreeFeedButtonMemoryFunction} pointTrackerValue={pointTrackerValue} feedPointTrackerValue={pointTrackerValueFunction} choiceButtonMemory={choiceButtonMemory} feedChoiceButtonMemoryFunction={skillTreeFeedChoiceButtonMemoryFunction} />
             </ArchetypeSelected.Provider>
         </div>
     )

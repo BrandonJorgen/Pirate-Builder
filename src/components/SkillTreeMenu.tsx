@@ -119,7 +119,9 @@ export default function SkillTreeMenu()
 
             <TabPanel>
                 <archetype.Provider value={selectedArchetype.current}>
-                    <ArchetypeSkillTreeSelector handleArchetypeSelected={AssignArchetype} skillTreeMemoryButtonMemory={archetypeTreeButtonMemory.current} skillTreeFeedButtonMemoryFunction={GetArchetypeButtonMemory} pointTrackerValue={archetypePointTrackerValue.current} pointTrackerValueFunction={GetArchetypePointTrackingValue} />
+                    <ArchetypeSkillTreeSelector handleArchetypeSelected={AssignArchetype} skillTreeMemoryButtonMemory={archetypeTreeButtonMemory.current} skillTreeFeedButtonMemoryFunction={GetArchetypeButtonMemory} pointTrackerValue={archetypePointTrackerValue.current} pointTrackerValueFunction={GetArchetypePointTrackingValue} choiceButtonMemory={[]} skillTreeFeedChoiceButtonMemoryFunction={function (_index: number, _array: number[]): void {
+                            throw new Error('Function not implemented.');
+                        } } />
                 </archetype.Provider>
             </TabPanel>
 
