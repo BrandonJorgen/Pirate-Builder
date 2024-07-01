@@ -9,7 +9,7 @@ interface SkillButtonProps
     index: number,
     positionRow: string,
     positionColumn: string,
-    buttonType: number, // 1 = basic, 2 = multi-path, 3 = choice
+    buttonType: number, // 0 = basic, 1 = multi-path, 2 = choice, 3 = multi-requirement
     icon: string,
     startsDisabled: string, // "0" || "1"
     startsSelected: boolean,
@@ -85,13 +85,14 @@ export default function SkillButton({
         if (setup === false) {
             startup()
         }
-    }, 100)
+    }, 50)
 
     function startup()
     {
         if (startsDisabled === "1")
             {
                 skillButtons[index].setAttribute('data-disabled', "1")
+                console.log("DISABLED THIS BITCH: " + index)
             }
             else
             {
@@ -133,8 +134,8 @@ export default function SkillButton({
     function onClick()
     {
         if (canBePressed !== false) {
-            //Basic and Multipath button
-            if (buttonType === 0 || buttonType === 1) {
+            //Basic, Multipath, or Multirequirement button
+            if (buttonType === 0 || buttonType === 1 || buttonType === 3) {
                 //Button isn't disabled
                 if (skillButtons[index].getAttribute("data-disabled") === "0")
                 {
@@ -181,7 +182,7 @@ export default function SkillButton({
 
     function onHover()
     {
-        if ((buttonType === 0 || buttonType === 1) && (choiceMade === false))
+        if ((buttonType === 0 || buttonType === 1 || buttonType === 3) && (choiceMade === false))
             tooltip[index].setAttribute("data-show", "1")
 
         if (buttonType === 2 && choiceMade === true && choiceMenuOpen === false)
@@ -196,8 +197,6 @@ export default function SkillButton({
     function GetChoiceData(id: number, data: string[])
     {
         choiceData.current = data
-
-        console.log(data)
 
         // Feed data
         localTooltipData.current[0] = data[0]  // Icon

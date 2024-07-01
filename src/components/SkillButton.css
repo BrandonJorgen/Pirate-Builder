@@ -149,6 +149,21 @@
     grid-column: 13;
 }
 
+.skill-button[data-column="14"]
+{
+    grid-column: 14;
+}
+
+.skill-button[data-column="15"]
+{
+    grid-column: 15;
+}
+
+.skill-button[data-column="16"]
+{
+    grid-column: 16;
+}
+
 .skill-button-icon
 {
     position: relative;
