@@ -68,7 +68,7 @@ export default function SkillChoice({
             <img id={index.toString()} src={icon} alt="Icon" data-row="0" data-column="1"/>
             <span className="skill-choice-name" id={index.toString()} data-row="1" data-column="2">{name}</span>
             <span className="skill-choice-description" id={index.toString()} data-row="2" data-column="2">{description}</span>
-            <Tooltip sortClass={"skill-choice-" + index} index={index} side={tooltipSide} type={0} title={tooltipName} Cost={tooltipCost} range={tooltipRange} cooldown={tooltipCooldown} useOrCast={tooltipUseOrCast} castTime={tooltipCastTime} resource={tooltipResource} description={tooltipDescription} />
+            <Tooltip sortClass={"skill-choice-" + index} index={index} side={tooltipSide} type={1} title={tooltipName} Cost={tooltipCost} range={tooltipRange} cooldown={tooltipCooldown} useOrCast={tooltipUseOrCast} castTime={tooltipCastTime} resource={tooltipResource} description={tooltipDescription} />
         </div>
     )
 }

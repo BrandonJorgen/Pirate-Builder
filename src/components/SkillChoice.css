@@ -49,13 +49,13 @@
     grid-column: 2;
 }
 
-.tooltip[data-side="right"]
+.tooltip[data-side="right"][data-side="1"]
 {
     top: 5px;
     left: 375px
 }
 
-.tooltip[data-side="left"]
+.tooltip[data-side="left"][data-side="1"]
 {
     top: 5px;
     left: -325px

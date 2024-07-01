@@ -5,7 +5,7 @@ interface TooltipProps
     sortClass: string,
     index: number,
     side: string,
-    type: number,
+    type: number, // 0 = skill, 1 = skill choice
     title: string,
     Cost: string,
     range: string,

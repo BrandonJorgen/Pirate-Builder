@@ -36,7 +36,7 @@
 .tooltip[data-side="right"]
 {
     left: 125%;
-    top: -40px;
+    top: -50%;
 }
 
 .tooltip[data-side="left"]

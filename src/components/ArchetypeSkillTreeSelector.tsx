@@ -58,6 +58,15 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
                 setSelectedArchetype("Fighter-Skill-Tree")
                 handleArchetypeSelected("Fighter")
                 break;
+
+            case "Ranger":
+                if (buttonGroup !== null)
+                    buttonGroup.setAttribute("data-show", "0");
+                if (title !== null)
+                    title.setAttribute("data-show", "0");
+                archetypeSelected.current = 1
+                setSelectedArchetype("Ranger-Skill-Tree")
+                handleArchetypeSelected("Ranger")
         }
     }
 
@@ -85,7 +94,12 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
                 break
 
             case rangerButtonID:
-                console.log("Ranger Selected")
+                setSelectedArchetype("Ranger-Skill-Tree")
+                if (buttonGroup !== null)
+                    buttonGroup.setAttribute("data-show", "0")
+                if (title !== null)
+                    title.setAttribute("data-show", "0")
+                handleArchetypeSelected("Ranger")
                 break
 
             case mageButtonID:

@@ -5,6 +5,7 @@
     width: 925px;
     min-height: 940px;
     height: 940px;
+    overflow: clip;
 }
 
 .react-tabs__tab-list
