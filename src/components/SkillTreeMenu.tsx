@@ -19,7 +19,7 @@ export default function SkillTreeMenu()
 
     let selectedArchetype = useRef(" ")
 
-    let archetypeTreeButtonMemory = useRef([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+    let archetypeTreeButtonMemory = useRef([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
     let newMemoryArray: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     let newChoiceMemoryArray: any[] = [, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ]
@@ -48,6 +48,7 @@ export default function SkillTreeMenu()
 
     function AddTab()
     {
+        console.log("AddTab was called")
         setInstTabs((instTabs: string[]) => [...instTabs, "Weapon"])
         setInstTabTables((instTabTables: any[]) => [...instTabTables, numberOfTabs.current - 1])
 
@@ -95,7 +96,8 @@ export default function SkillTreeMenu()
 
     function GetWeaponButtonMemory(index: number, array: number[])
     { 
-        weaponTreeButtonMemories.current[index] = array
+        //This just adds a new array every time while also seemingly updating the correct one?
+        //weaponTreeButtonMemories.current[index] = array
     }
 
     function GetWeaponPointTrackingValue(index: number, value: number)
@@ -105,7 +107,8 @@ export default function SkillTreeMenu()
 
     function GetWeaponChoiceButtonMemory(index: number, array:number[])
     {
-        weaponChoiceButtonMemories.current[index] = array
+        //This just adds a new array every time while also seemingly updating the correct one?
+        //weaponChoiceButtonMemories.current[index] = array
     }
 
     return(

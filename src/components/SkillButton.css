@@ -82,6 +82,21 @@
     grid-row: 10;
 }
 
+.skill-button[data-row="11"]
+{
+    grid-row: 11;
+}
+
+.skill-button[data-row="12"]
+{
+    grid-row: 12;
+}
+
+.skill-button[data-row="13"]
+{
+    grid-row: 13;
+}
+
 /* COLUMNS */
 
 .skill-button[data-column="1"]

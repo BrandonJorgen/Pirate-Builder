@@ -85,6 +85,17 @@ export default function SkillButton({
         if (setup === false) {
             startup()
         }
+
+        if (buttonType === 2)
+        {
+            if (skillButtons[index].getAttribute("data-disabled") === "1")
+            {
+                localTooltipData.current[0] = "./icons/skill_Icons/Plus.png"
+                skillButtons[index].setAttribute('data-selected', "0")
+                //updateChoiceMemoryFunction(index, -1)
+                setChoiceMade(false)
+            }
+        }
     }, 50)
 
     function startup()
@@ -92,7 +103,7 @@ export default function SkillButton({
         if (startsDisabled === "1")
             {
                 skillButtons[index].setAttribute('data-disabled', "1")
-                console.log("DISABLED THIS BITCH: " + index)
+                //console.log("DISABLED THIS BITCH: " + index)
             }
             else
             {
@@ -155,33 +166,37 @@ export default function SkillButton({
             // Choice button
             if (buttonType === 2)
             {
-
-                if (choiceMenu[index].getAttribute("data-show") === "0")
+                if (skillButtons[index].getAttribute("data-disabled") === "0")
                 {
-                    // Display the child choice component
-                    choiceMenu[index].setAttribute("data-show", "1")
-                    setChoiceMenuOpen(true)
+                    if (choiceMenu[index].getAttribute("data-show") === "0")
+                    {
+                        // Display the child choice component
+                        choiceMenu[index].setAttribute("data-show", "1")
+                        setChoiceMenuOpen(true)
 
-                    if (choiceMade === true)
-                        {
-                            // show the clear button
-                            clearChoiceButton[index].setAttribute("data-show", "1")
-                        }
-                        
-                }
-                else
-                {
-                    choiceMenu[index].setAttribute("data-show", "0")
-                    clearChoiceButton[index].setAttribute("data-show", "0")
-                    setChoiceMenuOpen(false)
-                }
-                    
+                        if (choiceMade === true)
+                            {
+                                // show the clear button
+                                clearChoiceButton[index].setAttribute("data-show", "1")
+                            }
+                            
+                    }
+                    else
+                    {
+                        choiceMenu[index].setAttribute("data-show", "0")
+                        clearChoiceButton[index].setAttribute("data-show", "0")
+                        setChoiceMenuOpen(false)
+                    }
+                }  
             }
         }
     }
 
     function onHover()
     {
+        if (tooltip === undefined || tooltip[index] === undefined)
+            return
+
         if ((buttonType === 0 || buttonType === 1 || buttonType === 3) && (choiceMade === false))
             tooltip[index].setAttribute("data-show", "1")
 
@@ -191,7 +206,12 @@ export default function SkillButton({
 
     function onHoverLeave()
     {
+        if (tooltip === undefined || tooltip[index] === undefined)
+            return
+
         tooltip[index].setAttribute("data-show", "0")
+        
+            
     }
 
     function GetChoiceData(id: number, data: string[])

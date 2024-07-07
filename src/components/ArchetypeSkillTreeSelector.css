@@ -42,6 +42,7 @@
 #tank-select-button
 {
     background: radial-gradient(circle, rgba(181,9,9,1) 0%, rgba(181,9,9,1) 36%, rgba(181,9,9,0) 80%);
+    filter: grayscale(100%);
 }
 
 #fighter-select-button
@@ -52,6 +53,7 @@
 #rogue-select-button
 {
     background: radial-gradient(circle, rgba(170,171,10,1) 0%, rgba(170,171,10,1) 36%, rgba(170,171,10,0) 80%);
+    filter: grayscale(100%);
 }
 
 #ranger-select-button
@@ -67,11 +69,14 @@
 #cleric-select-button
 {
     background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 36%, rgba(255,255,255,0) 80%);
+    filter: grayscale(100%);
+    filter: brightness(50%);
 }
 
 #summoner-select-button
 {
     background: radial-gradient(circle, rgba(9,9,121,1) 0%, rgba(9,9,121,1) 36%, rgba(9,9,121,0) 80%);
+    filter: grayscale(100%);
 }
 
 #bard-select-button

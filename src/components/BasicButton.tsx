@@ -19,21 +19,30 @@ export default function BasicButton({ index, id, icon, tooltipSortClass, tooltip
 
         tooltip = document.getElementsByClassName(tooltipSortClass + "-tooltip")
 
-    }, 100)
+    }, 50)
 
     function click()
     {
+        if (tooltip === undefined || tooltip[index] === undefined)
+            return
+
         tooltip[index].setAttribute("data-show", "0")
         handleClick(event)
     }
 
     function onHover()
     {
+        if (tooltip === undefined || tooltip[index] === undefined)
+            return
+
         tooltip[index].setAttribute("data-show", "1")
     }
 
     function onHoverLeave()
     {
+        if (tooltip === undefined || tooltip[index] === undefined)
+            return
+
         tooltip[index].setAttribute("data-show", "0")
     }
 

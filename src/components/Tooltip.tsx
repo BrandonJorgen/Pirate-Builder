@@ -45,77 +45,65 @@ export default function Tooltip({
             Description
 
     */
+   
+    let manaString: string
+    let rangeString: string
+    let cooldownString: string
+    let castTimeString: string
 
-    if (type === 0)
+
+    if (Cost === "N/A" || Cost === "")
     {
-        let manaString: string
-        let rangeString: string
-        let cooldownString: string
-        let castTimeString: string
-    
-    
-        if (Cost === "N/A" || Cost === "")
-        {
-            manaString = ""
-        }
-        else
-        {
-            manaString = resource + ": " + Cost
-        }
-    
-    
-        if (range === "N/A" || range === "")
-        {
-            rangeString = ""
-        }
-        else
-        {
-            rangeString = "Range: " + range
-        }
-    
-    
-        if (cooldown === "N/A" || cooldown === "")
-        {
-            cooldownString = ""
-        }
-        else
-        {
-            cooldownString = cooldown + " Cooldown"
-        }
-    
-    
-        if (useOrCast === "use")
-        {
-            castTimeString = castTime + " Use"
-        }
-        else
-        {
-            castTimeString = castTime + " Cast"
-        }
-    
-        if (castTime === "N/A" || castTime === "")
-        {
-            castTimeString = ""
-        }
-    
-        return(
-            <div className={sortClass + "-tooltip tooltip"} id={index.toString()} data-show="0" data-side={side} data-type={type}>
-                <span className="tooltip-title">{title}</span>
-                <span className="tooltip-mana">{manaString}</span>
-                <span className="tooltip-range">{rangeString}</span>
-                <span className='tooltip-cooldown'>{cooldownString}</span>
-                <span className='tooltip-cast-time'>{castTimeString}</span>
-                <span className="tooltip-description">{description}</span>
-            </div>
-        )
+        manaString = ""
+    }
+    else
+    {
+        manaString = resource + ": " + Cost
     }
 
-    if (type === 1)
+
+    if (range === "N/A" || range === "")
     {
-        return(
-            <div className={sortClass + "-tooltip tooltip"} id={index.toString()} data-show="0" data-side={side} data-type={type}>
-                <span className='tooltip-title'>test</span>
-            </div>
-        )
+        rangeString = ""
     }
+    else
+    {
+        rangeString = "Range: " + range
+    }
+
+
+    if (cooldown === "N/A" || cooldown === "")
+    {
+        cooldownString = ""
+    }
+    else
+    {
+        cooldownString = cooldown + " Cooldown"
+    }
+
+
+    if (useOrCast === "use")
+    {
+        castTimeString = castTime + " Use"
+    }
+    else
+    {
+        castTimeString = castTime + " Cast"
+    }
+
+    if (castTime === "N/A" || castTime === "")
+    {
+        castTimeString = ""
+    }
+
+    return(
+        <div className={sortClass + "-tooltip tooltip"} id={index.toString()} data-show="0" data-side={side} data-type={type}>
+            <span className="tooltip-title">{title}</span>
+            <span className="tooltip-mana">{manaString}</span>
+            <span className="tooltip-range">{rangeString}</span>
+            <span className='tooltip-cooldown'>{cooldownString}</span>
+            <span className='tooltip-cast-time'>{castTimeString}</span>
+            <span className="tooltip-description">{description}</span>
+        </div>
+    )
 }

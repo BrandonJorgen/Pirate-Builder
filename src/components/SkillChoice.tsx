@@ -43,13 +43,11 @@ export default function SkillChoice({
 
     setTimeout(() => {
         tooltip = document.getElementsByClassName("skill-choice-" + index + "-tooltip")
-        console.log(tooltip)
     }, 100)
 
     function onHover()
     {
         tooltip[buttonIndex].setAttribute("data-show", "1")
-        console.log(tooltip)
     }
 
     function onHoverLeave()
