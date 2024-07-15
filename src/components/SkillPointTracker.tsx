@@ -12,12 +12,13 @@ interface SkillPointTrackerProps
 
 export default function SkillPointTracker({ id, parentName, maxPoints }: SkillPointTrackerProps)
 {
+
     if (parentName === "Archetype")
     {
         const context = useContext(archetypeSkillPointCount)
 
         return(
-        <div className="skill-point-tracker" id={id}>
+        <div className="skill-point-tracker" id={id} data-maxed-out="0">
             <p>Skill Points: {context} / {maxPoints}</p>
         </div>
     )
@@ -28,7 +29,7 @@ export default function SkillPointTracker({ id, parentName, maxPoints }: SkillPo
             const context = useContext(weaponSkillPointCount)
     
             return(
-            <div className="skill-point-tracker" id={id}>
+            <div className="skill-point-tracker" id={id} data-maxed-out={context}>
                 <p>Skill Points: {context} / {maxPoints}</p>
             </div>
         )

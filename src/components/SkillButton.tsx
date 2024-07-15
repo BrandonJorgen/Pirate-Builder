@@ -18,6 +18,7 @@ interface SkillButtonProps
     connectedLines: number[],
     choices: string[][], // Each array in this array is a singular option, each option needs (in this order): Icon, Name, Description, and then all the tooltip props
     choiceMemory: number,
+    choiceMenuSide: string,
     updateChoiceMemoryFunction: (index: number, choice: number) => void,
     tooltipSortClass: string,
     tooltipSide: string,
@@ -45,6 +46,7 @@ export default function SkillButton({
      connectedLines,
      choices,
      choiceMemory,
+     choiceMenuSide = "top",
      updateChoiceMemoryFunction,
      tooltipSortClass,
      tooltipSide,
@@ -69,8 +71,13 @@ export default function SkillButton({
     let choiceData = useRef<string[]>([])
     let [ choiceMenuOpen, setChoiceMenuOpen ] = useState(false)
     let clearChoiceButton: HTMLCollectionOf<Element>
+    let showMenu = useRef("0")
+    
+    let focused = useRef("0")
 
     let localTooltipData = useRef<string[]>([icon, tooltipName, tooltipCost, tooltipRange, tooltipCooldown, tooltipUseOrCast, tooltipCastTime, tooltipResource, tooltipDescription])
+
+    let hoverTimer: number | undefined = undefined
 
     setTimeout(() => {
 
@@ -82,47 +89,49 @@ export default function SkillButton({
 
         clearChoiceButton = document.getElementsByClassName("clear-choice-button")
 
-        if (setup === false) {
+        if (setup === false) 
+        {
             startup()
         }
 
-        if (buttonType === 2)
+        if (choiceMemory === -1)
         {
-            if (skillButtons[index].getAttribute("data-disabled") === "1")
-            {
-                localTooltipData.current[0] = "./icons/skill_Icons/Plus.png"
-                skillButtons[index].setAttribute('data-selected', "0")
-                //updateChoiceMemoryFunction(index, -1)
-                setChoiceMade(false)
-            }
+            console.log("CHOICE SHOULD BE RESET")
+
+            localTooltipData.current[0] = "./icons/skill_Icons/Plus.png"
+            skillButtons[index].setAttribute('data-selected', "0")
+            setChoiceMade(false)
         }
     }, 50)
 
     function startup()
     {
-        if (startsDisabled === "1")
-            {
-                skillButtons[index].setAttribute('data-disabled', "1")
-                //console.log("DISABLED THIS BITCH: " + index)
-            }
-            else
-            {
-                skillButtons[index].setAttribute('data-disabled', "0")
-            }
-    
-            if (startsSelected === true)
-            {
-                skillButtons[index].setAttribute('data-selected', "1")
-            }
 
+        if (startsDisabled === "1")
+        {
+            skillButtons[index].setAttribute('data-disabled', "1")
+            //console.log("DISABLED THIS BITCH: " + index)
+        }
+        else
+        {
+            skillButtons[index].setAttribute('data-disabled', "0")
+        }
+
+        if (startsSelected === true)
+        {
+            skillButtons[index].setAttribute('data-selected', "1")
+        }
+
+        // Choice Button
         if (buttonType === 2)
         {
-            for (let i = 0; i < choices.length; i++)
+            if (choiceMemory !== undefined) 
             {
-                if (i === choiceMemory)
+
+                if (choiceMemory !== -1) 
                 {
-                    localTooltipData.current[0] = choices[choiceMemory][0]  // Icon
                     localTooltipData.current[1] = choices[choiceMemory][1]  // Name
+                    localTooltipData.current[0] = choices[choiceMemory][0]  // Icon
                     localTooltipData.current[2] = choices[choiceMemory][4]  // Cost
                     localTooltipData.current[3] = choices[choiceMemory][5]  // Range
                     localTooltipData.current[4] = choices[choiceMemory][6]  // Cooldown
@@ -130,11 +139,10 @@ export default function SkillButton({
                     localTooltipData.current[6] = choices[choiceMemory][8]  // cast time
                     localTooltipData.current[7] = choices[choiceMemory][9]  // Resource
                     localTooltipData.current[8] = choices[choiceMemory][10] // Description
-
+    
                     setChoiceMade(true)
                     setChoiceMenuOpen(false)
-
-                    break
+                    focused.current = "0"
                 }
             }
         }
@@ -186,6 +194,7 @@ export default function SkillButton({
                         choiceMenu[index].setAttribute("data-show", "0")
                         clearChoiceButton[index].setAttribute("data-show", "0")
                         setChoiceMenuOpen(false)
+                        focused.current = "0"
                     }
                 }  
             }
@@ -194,6 +203,12 @@ export default function SkillButton({
 
     function onHover()
     {
+        if (buttonType === 2) 
+        {
+            clearTimeout(hoverTimer)
+            focused.current = "1"
+        }
+
         if (tooltip === undefined || tooltip[index] === undefined)
             return
 
@@ -211,7 +226,20 @@ export default function SkillButton({
 
         tooltip[index].setAttribute("data-show", "0")
         
-            
+        hoverTimer = setTimeout(() => {
+
+            if (buttonType === 2)
+            {
+                if (choiceMenuOpen === true)
+                {
+                    choiceMenu[index].setAttribute("data-show", "0")
+                    clearChoiceButton[index].setAttribute("data-show", "0")
+                    setChoiceMenuOpen(false)
+                }
+                
+                focused.current = "0"
+            }
+        }, 500);
     }
 
     function GetChoiceData(id: number, data: string[])
@@ -240,6 +268,7 @@ export default function SkillButton({
 
         setChoiceMade(true)
         setChoiceMenuOpen(false)
+        focused.current = "0"
     }
 
     function ClearChoice()
@@ -248,17 +277,18 @@ export default function SkillButton({
         skillButtons[index].setAttribute('data-selected', "0")
         updateChoiceMemoryFunction(index, -1)
         setChoiceMade(false)
+        focused.current = "0"
         handleClick(index, connectedButtons, connectedLines)
     }
 
     return (
-        <div className="skill-button" id={index.toString()} data-index={index} data-row={positionRow} data-column={positionColumn} data-button-type={buttonType} data-connection-count={0} data-selected="0" data-disabled={startsDisabled} data-connected-buttons={connectedButtons} data-connected-lines={connectedLines} onClick={onClick} onMouseOver={onHover} onMouseLeave={onHoverLeave}>
+        <div className="skill-button" id={index.toString()} data-index={index} data-row={positionRow} data-column={positionColumn} data-button-type={buttonType} data-connection-count={0} data-selected="0" data-disabled={startsDisabled} data-starts-disabled={startsDisabled} data-was-disabled={"0"} data-connected-buttons={connectedButtons} data-connected-lines={connectedLines} data-focused={focused.current} onClick={onClick} onMouseOver={onHover} onMouseLeave={onHoverLeave}>
             <img className="skill-button-icon" src={localTooltipData.current[0]} alt="icon" draggable="false" />
             <div className="clear-choice-button" data-show="0">
                 <BasicButton index={0} id={'remove-button'} icon={'./icons/Cross.png'} tooltipSortClass={''} tooltipSide={''} tooltipText={''} handleClick={ClearChoice}/>
             </div>
             
-            <SkillChoicesMenu choices={choices} choiceDataReturn={GetChoiceData} side={"top"} buttonIndex={index} />
+            <SkillChoicesMenu choices={choices} choiceDataReturn={GetChoiceData} side={choiceMenuSide} buttonIndex={index} showMenu={showMenu.current} />
             <Tooltip sortClass={tooltipSortClass} index={index} side={tooltipSide} type={0} title={localTooltipData.current[1]} Cost={localTooltipData.current[2]} range={localTooltipData.current[3]} cooldown={localTooltipData.current[4]} castTime={localTooltipData.current[6]} description={localTooltipData.current[8]} useOrCast={localTooltipData.current[5]} resource={localTooltipData.current[7]} />
         </div>
     )

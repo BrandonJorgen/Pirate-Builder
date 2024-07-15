@@ -38,13 +38,13 @@
 .tooltip[data-show="1"]
 {
     visibility: visible;
-    z-index: 100;
+    z-index: 150;
 }
 
 .tooltip[data-side="right"]
 {
     left: 125%;
-    top: -50%;
+    top: 0%;
 }
 
 .tooltip[data-side="left"]
@@ -59,10 +59,34 @@
     top: 80px;
 }
 
+.tooltip[data-side="bottom-left"]
+{
+    left: -250px;
+    top: 80px;
+}
+
+.tooltip[data-side="bottom-right"]
+{
+    left: 0px;
+    top: 80px;
+}
+
 .tooltip[data-side="top"]
 {
     left: -117%;
     bottom: 125%;
+}
+
+.tooltip[data-side="top-left"]
+{
+    left: -400%;
+    bottom: 125%;
+}
+
+.tooltip[data-side="top-right"]
+{
+    left: 10%;
+    bottom: 100%;
 }
 
 .tooltip-title

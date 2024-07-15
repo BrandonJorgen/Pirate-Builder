@@ -47,23 +47,34 @@ export default function SkillChoice({
 
     function onHover()
     {
+        if (tooltip === undefined || tooltip[buttonIndex] === undefined)
+            return
+
         tooltip[buttonIndex].setAttribute("data-show", "1")
     }
 
     function onHoverLeave()
     {
+        if (tooltip === undefined || tooltip[buttonIndex] === undefined)
+            return
+
         tooltip[buttonIndex].setAttribute("data-show", "0")
     }
 
     function HandleClick(event: any)
     {
+        if (tooltip === undefined || tooltip[buttonIndex] === undefined)
+        {
+            clickFunction(event)
+        }
+
         tooltip[buttonIndex].setAttribute("data-show", "0")
         clickFunction(event)
     }
 
     return(
         <div className="skill-choice" id={index.toString()} onClick={HandleClick} onMouseEnter={onHover} onMouseLeave={onHoverLeave}>
-            <img id={index.toString()} src={icon} alt="Icon" data-row="0" data-column="1"/>
+            <img className="skill-choice-icon" id={index.toString()} src={icon} alt="Icon" data-row="0" data-column="1"/>
             <span className="skill-choice-name" id={index.toString()} data-row="1" data-column="2">{name}</span>
             <span className="skill-choice-description" id={index.toString()} data-row="2" data-column="2">{description}</span>
             <Tooltip sortClass={"skill-choice-" + index} index={index} side={tooltipSide} type={1} title={tooltipName} Cost={tooltipCost} range={tooltipRange} cooldown={tooltipCooldown} useOrCast={tooltipUseOrCast} castTime={tooltipCastTime} resource={tooltipResource} description={tooltipDescription} />

@@ -7,11 +7,18 @@
     background-color: rgb(59, 59, 59);
     filter: brightness(75%);
     cursor:pointer;
+    z-index: 150;
 }
 
 .skill-choice:hover
 {
     filter: brightness(100%);
+}
+
+.skill-choice-icon
+{
+    height: 60px;
+    width: 60px;
 }
 
 .skill-choice-name

@@ -21,8 +21,8 @@ export default function SkillTreeMenu()
 
     let archetypeTreeButtonMemory = useRef([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
-    let newMemoryArray: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    let newChoiceMemoryArray: any[] = [, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ]
+    let newMemoryArray: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    let newChoiceMemoryArray: any[] = [ , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ]
 
     let archetypePointTrackerValue = useRef(0)
 
@@ -94,7 +94,7 @@ export default function SkillTreeMenu()
         archetypePointTrackerValue.current += value
     }
 
-    function GetWeaponButtonMemory(index: number, array: number[])
+    function GetWeaponButtonMemory(_index: number, _array: number[])
     { 
         //This just adds a new array every time while also seemingly updating the correct one?
         //weaponTreeButtonMemories.current[index] = array
@@ -105,7 +105,7 @@ export default function SkillTreeMenu()
         weaponPointTrackerValueArray.current[index] += value
     }
 
-    function GetWeaponChoiceButtonMemory(index: number, array:number[])
+    function GetWeaponChoiceButtonMemory(_index: number, _array:number[])
     {
         //This just adds a new array every time while also seemingly updating the correct one?
         //weaponChoiceButtonMemories.current[index] = array

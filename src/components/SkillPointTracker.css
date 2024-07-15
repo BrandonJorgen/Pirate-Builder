@@ -4,3 +4,8 @@
     left: 25px;
     top: 840px;
 }
+
+.skill-point-tracker[data-maxed-out="24"]
+{
+    color: red;
+}

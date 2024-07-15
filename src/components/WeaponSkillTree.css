@@ -28,3 +28,34 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
+.skill-tree#Wand-Skill-Tree[data-show="1"]
+{
+    visibility: visible;
+    top: -310px;
+}
+
+.skill-tree#Wand-Skill-Tree
+{
+    position: absolute;
+    min-width: 925px;
+    width: 925px;
+    min-height: 850px;
+    height: 850px;
+    visibility: hidden;
+}
+
+.wand-skill-tree-buttons
+{
+    position: absolute;
+    display: grid;
+    grid-template-rows: repeat(11, 60px);
+    grid-template-columns: repeat(11, 60px);
+    gap: 30px;
+    min-width: 925px;
+    width: 925px;
+    min-height: 900px;
+    height: 900px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

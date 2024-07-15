@@ -3,13 +3,13 @@
     position: relative;
     left: -150px;
     visibility: hidden;
+    z-index: auto;
 }
 
 .skill-choice-menu[data-show="1"]
 {
     visibility: visible;
     filter: brightness(100%) !important;
-    z-index: 101; /* literally just one more than skill button */
 }
 
 .skill-choice-menu #remove-button
@@ -23,7 +23,7 @@
 .skill-choices
 {
     position: relative;
-    width: 350px;
+    width: 370px;
     height: 202px;
     background-color: rgb(19, 19, 19);
     display: grid;
@@ -31,24 +31,86 @@
     grid-template-columns: repeat(1, 1fr);
     row-gap: 4px;
     padding: 4px;
+    z-index: auto;
 }
 
 .skill-choices[data-choice-amount="4"]
 {
-    height: 272px;
+    height: 255px;
 }
 
-.skill-choices[data-choice-amount="4"]
+.skill-choices[data-choice-amount="3"]
 {
-    height: 272px;
+    height: 200px;
+}
+
+.skill-choices[data-choice-amount="2"]
+{
+    height: 130px;
 }
 
 .skill-choice-menu[data-side="top"] .skill-choices[data-choice-amount="4"]
 {
-    top: -350px;
+    top: -345px;
 }
 
 .skill-choice-menu[data-side="top"] .skill-choices[data-choice-amount="3"]
 {
+    top: -275px;
+}
+
+.skill-choice-menu[data-side="top"] .skill-choices[data-choice-amount="2"]
+{
+    top: 100px;
+}
+
+.skill-choice-menu[data-side="top-left"] .skill-choices[data-choice-amount="4"]
+{
+    top: -345px;
+    left: -150px;
+}
+
+.skill-choice-menu[data-side="top-right"] .skill-choices[data-choice-amount="4"]
+{
+    top: -345px;
+    left: 100px;
+}
+
+.skill-choice-menu[data-side="top-right"] .skill-choices[data-choice-amount="3"]
+{
     top: -280px;
+    left: 100px;
+}
+
+.skill-choice-menu[data-side="top-right"] .skill-choices[data-choice-amount="2"]
+{
+    top: -210px;
+    left: 100px;
+}
+
+.skill-choice-menu[data-side="bottom"] .skill-choices[data-choice-amount="4"]
+{
+    top: -5px;
+}
+
+.skill-choice-menu[data-side="bottom"] .skill-choices[data-choice-amount="3"]
+{
+    top: -5px;
+}
+
+.skill-choice-menu[data-side="bottom"] .skill-choices[data-choice-amount="2"]
+{
+    top: -5px;
+}
+
+.skill-choice-menu[data-side="bottom-left"] .skill-choices[data-choice-amount="4"]
+{
+    top: 0px;
+    left: -150px;
+}
+
+.skill-choice-menu[data-side="bottom-right"] .skill-choices[data-choice-amount="2"]
+{
+    top: 0px;
+    left: 150px;
 }
