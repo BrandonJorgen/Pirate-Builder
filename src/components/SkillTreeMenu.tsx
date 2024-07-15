@@ -111,6 +111,13 @@ export default function SkillTreeMenu()
         //weaponChoiceButtonMemories.current[index] = array
     }
 
+    function RemoveWeaponTreeMemory(index: number)
+    {
+        console.log(weaponTreeButtonMemories)
+        weaponTreeButtonMemories.current.splice(index, 1)
+        console.log(weaponTreeButtonMemories)
+    }
+
     return(
     <div className='skill-tree-menu'>
         <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
@@ -132,7 +139,7 @@ export default function SkillTreeMenu()
             {instTabTables.map((i) => (
                 <TabPanel>
                     <weapon.Provider value={instTabs}>
-                        <WeaponSkillTreeSelector key={i - 1} index={i - 1} handleClick={ChangeTabName} skillTreeMemoryButtonMemory={weaponTreeButtonMemories.current[i - 1]} skillTreeFeedButtonMemoryFunction={GetWeaponButtonMemory} pointTrackerValue={weaponPointTrackerValueArray.current[i - 1]} pointTrackerValueFunction={GetWeaponPointTrackingValue} choiceButtonMemory={weaponChoiceButtonMemories.current[i - 1]} skillTreeFeedChoiceButtonMemoryFunction={GetWeaponChoiceButtonMemory}/>
+                        <WeaponSkillTreeSelector key={i - 1} index={i - 1} handleClick={ChangeTabName} skillTreeMemoryButtonMemory={weaponTreeButtonMemories.current[i - 1]} skillTreeFeedButtonMemoryFunction={GetWeaponButtonMemory} pointTrackerValue={weaponPointTrackerValueArray.current[i - 1]} pointTrackerValueFunction={GetWeaponPointTrackingValue} choiceButtonMemory={weaponChoiceButtonMemories.current[i - 1]} skillTreeFeedChoiceButtonMemoryFunction={GetWeaponChoiceButtonMemory} removeTreeMemoryFunction={RemoveWeaponTreeMemory}/>
                     </weapon.Provider>
                 </TabPanel>))}
             <TabPanel>

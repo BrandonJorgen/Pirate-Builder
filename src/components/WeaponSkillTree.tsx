@@ -4,6 +4,7 @@ import './WeaponSkillTree.css'
 import SkillPointTracker from './SkillPointTracker'
 import { WeaponSelected } from './WeaponSkillTreeSelector'
 import SkillConnection from './SkillConnection'
+import BasicButton from './BasicButton'
 
 interface SkillTreeProps
 {
@@ -14,11 +15,12 @@ interface SkillTreeProps
     feedPointTrackerValue: (index: number, value: number) => void,
     choiceButtonMemory: number[],
     feedChoiceButtonMemoryFunction: (index: number, array: number[]) => void,
+    backButtonFunction: () => void,
 }
 
 export const weaponSkillPointCount = createContext(0)
 
-export default function WeaponSkillTree({ index, buttonMemory, feedMemoryFunction, pointTrackerValue, feedPointTrackerValue, choiceButtonMemory, feedChoiceButtonMemoryFunction }: SkillTreeProps)
+export default function WeaponSkillTree({ index, buttonMemory, feedMemoryFunction, pointTrackerValue, feedPointTrackerValue, choiceButtonMemory, feedChoiceButtonMemoryFunction, backButtonFunction }: SkillTreeProps)
 {
     let skillButtons: HTMLCollectionOf<Element>
 
@@ -372,6 +374,114 @@ export default function WeaponSkillTree({ index, buttonMemory, feedMemoryFunctio
         feedChoiceButtonMemoryFunction(index, choiceButtonMemory)
     }
 
+    function ResetTree(event: any)
+    {
+
+        // Reset every button in the tree that should be reset
+        for (let i = 0; i < skillButtons.length; i++)
+        {
+            if (skillButtons[i].getAttribute("data-selected") === "1")
+            {
+                skillButtons[i].setAttribute("data-selected", "0")
+
+                feedPointTrackerValue(index, -1)
+
+                let connectedArray = skillButtons[i].getAttribute("data-connected-buttons")?.split(',').map(Number)
+
+                let connectedLineArray = skillButtons[i].getAttribute("data-connected-lines")?.split(',').map(Number)
+
+                if (connectedArray !== undefined && connectedLineArray !== undefined)
+                {
+                    UpdateConnections(i, connectedArray, connectedLineArray)
+                }
+            }
+        }
+
+        // Reset the skill point tracker value
+        tempCount.current = 0
+        setCount(tempCount.current)
+
+        // Reset every connection line in the tree
+        for (let i = 0; i < lines.length; i++)
+        {
+            if (lines[i].getAttribute("data-active") === "1")
+            {
+                lines[i].setAttribute("data-active", "0")
+            }
+        }
+
+        // Reset the tree's memory
+        for (let i = 0; i < skillButtons.length; i++) 
+        {
+            buttonMemoryArray[i] = 0
+            feedMemoryFunction(i, buttonMemoryArray)
+        }
+
+        // Reset the tree's choice memory
+        for (let i = 0; i < skillButtons.length; i++)
+        {
+            choiceButtonMemory[i] = -1
+        }
+    }
+
+    function BackButton()
+    {
+        // Reset every button in the tree that should be reset
+        for (let i = 0; i < skillButtons.length; i++)
+        {
+            if (skillButtons[i].getAttribute("data-selected") === "1")
+            {
+                skillButtons[i].setAttribute("data-selected", "0")
+
+                feedPointTrackerValue(index, -1)
+
+                let connectedArray = skillButtons[i].getAttribute("data-connected-buttons")?.split(',').map(Number)
+
+                let connectedLineArray = skillButtons[i].getAttribute("data-connected-lines")?.split(',').map(Number)
+
+                if (connectedArray !== undefined && connectedLineArray !== undefined)
+                {
+                    UpdateConnections(i, connectedArray, connectedLineArray)
+                }
+            }
+        }
+
+        // Reset the skill point tracker value
+        tempCount.current = 0
+        setCount(tempCount.current)
+
+        // Reset every connection line in the tree
+        for (let i = 0; i < lines.length; i++)
+        {
+            if (lines[i].getAttribute("data-active") === "1")
+            {
+                lines[i].setAttribute("data-active", "0")
+            }
+        }
+
+        // Reset the tree's memory
+        for (let i = 0; i < skillButtons.length; i++) 
+        {
+            buttonMemoryArray[i] = 0
+            feedMemoryFunction(i, buttonMemoryArray)
+        }
+
+        // Reset the tree's choice memory
+        for (let i = 0; i < skillButtons.length; i++)
+        {
+            choiceButtonMemory[i] = -1
+        }
+
+        let treeToShow = document.getElementById(selectedWeapon)
+
+        if (treeToShow === null)
+            return
+
+        treeToShow?.setAttribute("data-show", "0")
+        backButtonFunction()
+        
+    }
+
     return(
     <div className='weapon-skill-tree'>
         <div className='skill-tree' id='Greatsword-Skill-Tree' data-show="0">
@@ -465,6 +575,9 @@ export default function WeaponSkillTree({ index, buttonMemory, feedMemoryFunctio
                 <SkillButton index={38} positionRow={'3'} positionColumn={'8'} buttonType={0} icon={'./icons/skill_Icons/Greatsword/Duration.png'} startsDisabled={'1'} startsSelected={false} canBePressed={true} connectedButtons={[]} connectedLines={[]} choices={[]} choiceMemory={0} updateChoiceMemoryFunction={UpdateChoiceMemory} tooltipSortClass={'skill-tree'} tooltipSide={'bottom'} tooltipName={'Extended Duration 2'} tooltipCost={''} tooltipRange={''} tooltipCooldown={''} tooltipUseOrCast={''} tooltipCastTime={''} tooltipResource={''} tooltipDescription={'Extends the duration of the Second Strike and Perfect Timing proc effects by 2.5 seconds.'} handleClick={handleClick} choiceMenuSide={''} />
                 <SkillButton tooltipSortClass={'skill-tree'} index={39} positionRow={'2'} positionColumn={'7'} buttonType={2} icon={'./icons/skill_Icons/Plus.png'} startsDisabled={"0"} connectedButtons={[]} connectedLines={[]} handleClick={handleClick} startsSelected={false} canBePressed={true} tooltipSide={'bottom'} tooltipName={''} tooltipCost={''} tooltipRange={''} tooltipCooldown={''} tooltipCastTime={''} tooltipDescription={''} tooltipUseOrCast={''} tooltipResource={''} choices={[["./icons/skill_Icons/Greatsword/KeenEdge.png", "Keen Edge", "+Keen Edge chance (Passive)", "left", "", "", "", "use", "", "mana", "Your abilities have a 30% chance to proc Keen Edge: Your next Weapon Combo Finisher has +100% chance to critically hit."], ["./icons/skill_Icons/Greatsword/Refreshing.png", "Refreshing Followthrough", "+Refreshing Followthrough chance (Passive)", "left", "", "", "", "", "", "mana", "Your abilities have a 30% chance to proc Refreshing Followthrough: Your next Weapon Combo Finisher restores 3-5% of your max Mana."], ["./icons/skill_Icons/Greatsword/Guard_Icon.png", "Guard", "+Guard chance (Passive)", "left", "", "", "", "", "", "mana", "Your abilities have a 30% chance to proc Guard: Your next Weapon Combo Finisher grants 6 seconds of temporary health equal to 1-3% of your max HP."]]} updateChoiceMemoryFunction={UpdateChoiceMemory} choiceMemory={choiceButtonMemory[39]} choiceMenuSide={'bottom'}  />
             </div>
+
+            <BasicButton index={0} id={'reset'} icon={'./icons/Cross.png'} tooltipSortClass={''} tooltipSide={''} tooltipText={''} handleClick={ResetTree} />
+            <BasicButton index={0} id={'back'} icon={'./Placeholder_Icon.png'} tooltipSortClass={''} tooltipSide={''} tooltipText={''} handleClick={BackButton} />
 
             <weaponSkillPointCount.Provider value={count}>
                 <SkillPointTracker id={'greatsword-tree-skill-point-tracker'} maxPoints={24} parentName={'Weapon'} />
@@ -570,6 +683,9 @@ export default function WeaponSkillTree({ index, buttonMemory, feedMemoryFunctio
                 <SkillButton tooltipSortClass={'skill-tree'} index={85} positionRow={'2'} positionColumn={'5'} buttonType={2} icon={'./icons/skill_Icons/Plus.png'} startsDisabled={"0"} connectedButtons={[]} connectedLines={[]} handleClick={handleClick} startsSelected={false} canBePressed={true} tooltipSide={'left'} tooltipName={''} tooltipCost={''} tooltipRange={''} tooltipCooldown={''} tooltipCastTime={''} tooltipDescription={''} tooltipUseOrCast={''} tooltipResource={''} choices={[["./icons/skill_Icons/Greatsword/KeenEdge.png", "Keen Edge", "+Keen Edge Chance (Passive)", "right", "", "", "", "use", "", "mana", "Your abilities have a 30% chance to proc Keen Edge: Your next Weapon Combo Finisher has +100% chance to critically hit"], ["./icons/skill_Icons/Greatsword/FollowThrough.png", "Refreshing Followthrough", "+Refreshing Followthrough Chance (Passive)", "left", "", "", "", "", "", "mana", "Your abilities have a 30% chance to proc Refreshing Followthrough: Your next Weapon Combo Finisher restores 3-5% of your max Mana"], ["./icons/skill_Icons/Greatsword/Guard_Icon.png", "Guard", "+Guard Chance (Passive)", "left", "", "", "", "", "", "mana", "Your abilities have a 30% chance to proc Guard: Your next Weapon Combo Finisher grants 6 secsonds of temp Health equal to 1-3% of your max Health"]]} updateChoiceMemoryFunction={UpdateChoiceMemory} choiceMemory={choiceButtonMemory[85]} choiceMenuSide={'bottom-left'}  />
                 <SkillButton tooltipSortClass={'skill-tree'} index={86} positionRow={'2'} positionColumn={'7'} buttonType={2} icon={'./icons/skill_Icons/Plus.png'} startsDisabled={"0"} connectedButtons={[]} connectedLines={[]} handleClick={handleClick} startsSelected={false} canBePressed={true} tooltipSide={'right'} tooltipName={''} tooltipCost={''} tooltipRange={''} tooltipCooldown={''} tooltipCastTime={''} tooltipDescription={''} tooltipUseOrCast={''} tooltipResource={''} choices={[["./icons/skill_Icons/Wand/CatalyticProjectiles_Icon.png", "Catalytic Projectiles", "+Conditional Crit Chance (Passive)", "right", "", "", "", "use", "", "mana", "After a standard Wand Hit 5, your next Hit 6 and 6+ has a 15% increased damage and 10% increased chance to Crit. These bonuses double against Burning, Conflagrating, and Shocked targets"], ["./icons/skill_Icons/Wand/Prism_Icon.png", "Prism", "+Conditional Beam Chance (Passive)", "left", "", "", "", "", "", "mana", "After proccing a Hit 5+ beam, your chance to proc a Hit 6+ beam is increased by 10%, and the base damage of your next Hit 6 or Hit 6+ beam is increased about an additional 10%"]]} updateChoiceMemoryFunction={UpdateChoiceMemory} choiceMemory={choiceButtonMemory[86]} choiceMenuSide={'bottom-right'}  />
             </div>
+
+            <BasicButton index={0} id={'reset'} icon={'./icons/Cross.png'} tooltipSortClass={''} tooltipSide={''} tooltipText={''} handleClick={ResetTree} />
+            <BasicButton index={0} id={'back'} icon={'./Placeholder_Icon.png'} tooltipSortClass={''} tooltipSide={''} tooltipText={''} handleClick={BackButton} />
 
             <weaponSkillPointCount.Provider value={count}>
                 <SkillPointTracker id={'wand-tree-skill-point-tracker'} maxPoints={24} parentName={'Weapon'} />

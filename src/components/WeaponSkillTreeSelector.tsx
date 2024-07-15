@@ -13,6 +13,7 @@ interface WeaponSkillTreeSelectorProps{
     pointTrackerValueFunction: (index: number, value: number) => void,
     choiceButtonMemory: number[],
     skillTreeFeedChoiceButtonMemoryFunction: (index: number, array: number[]) => void,
+    removeTreeMemoryFunction: (index: number) => void,
 }
 
 export const WeaponSelected = createContext("")
@@ -112,6 +113,21 @@ export default function WeaponSkillTreeSelector({ index = 0, handleClick, skillT
         }
     }
 
+    function BackButton()
+    {
+        console.log("Registered BACK BUTTON press")
+        
+        // hide the current tree
+        
+        // show the tree selector
+        handleClick(index, "Weapon")
+        if (buttonGroup !== null)
+            buttonGroup.setAttribute("data-show", "1")
+        if (title !== null)
+            title.setAttribute("data-show", "1")
+        setSelectedWeapon("back")
+    }
+
     return(
         <div className="weapon-skill-tree-selector">
 
@@ -124,7 +140,7 @@ export default function WeaponSkillTreeSelector({ index = 0, handleClick, skillT
             </div>
 
             <WeaponSelected.Provider value={selectedWeapon}>
-                <WeaponSkillTree index={index} buttonMemory={skillTreeMemoryButtonMemory} feedMemoryFunction={skillTreeFeedButtonMemoryFunction} pointTrackerValue={pointTrackerValue} feedPointTrackerValue={pointTrackerValueFunction} choiceButtonMemory={choiceButtonMemory} feedChoiceButtonMemoryFunction={skillTreeFeedChoiceButtonMemoryFunction} />
+                <WeaponSkillTree index={index} buttonMemory={skillTreeMemoryButtonMemory} feedMemoryFunction={skillTreeFeedButtonMemoryFunction} pointTrackerValue={pointTrackerValue} feedPointTrackerValue={pointTrackerValueFunction} choiceButtonMemory={choiceButtonMemory} feedChoiceButtonMemoryFunction={skillTreeFeedChoiceButtonMemoryFunction} backButtonFunction={BackButton} />
             </WeaponSelected.Provider>
             
         </div>
