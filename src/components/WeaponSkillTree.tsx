@@ -374,7 +374,7 @@ export default function WeaponSkillTree({ index, buttonMemory, feedMemoryFunctio
         feedChoiceButtonMemoryFunction(index, choiceButtonMemory)
     }
 
-    function ResetTree(event: any)
+    function ResetTree(_event: any)
     {
 
         // Reset every button in the tree that should be reset
