@@ -90,6 +90,10 @@ export default function Tooltip({
     {
         castTimeString = " Toggled"
     }
+    if (useOrCast === "held")
+    {
+        castTimeString = " Held"
+    }
     else
     {
         castTimeString = castTime + " Cast"
