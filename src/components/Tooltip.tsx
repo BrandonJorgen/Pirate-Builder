@@ -86,12 +86,16 @@ export default function Tooltip({
     {
         castTimeString = castTime + " Use"
     }
+    if (useOrCast === "toggle")
+    {
+        castTimeString = " Toggled"
+    }
     else
     {
         castTimeString = castTime + " Cast"
     }
 
-    if (castTime === "N/A" || castTime === "")
+    if ((castTime === "N/A" || castTime === "") && useOrCast != "toggle")
     {
         castTimeString = ""
     }
