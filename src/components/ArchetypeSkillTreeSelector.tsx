@@ -80,6 +80,16 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
                 handleArchetypeSelected("Mage")
                 break
 
+            case "Bard":
+                if (buttonGroup !== null)
+                    buttonGroup.setAttribute("data-show", "0");
+                if (title !== null)
+                    title.setAttribute("data-show", "0");
+                archetypeSelected.current = 1
+                setSelectedArchetype("Bard-Skill-Tree")
+                handleArchetypeSelected("Bard")
+                break
+
             default:
                 console.log("Tree memory in Archetype Skill Tree Selector has failed to find an archetype")
         }
@@ -135,7 +145,12 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
                 break
 
             case bardButtonID:
-                console.log("Bard Selected")
+                setSelectedArchetype("Bard-Skill-Tree")
+                if (buttonGroup !== null)
+                    buttonGroup.setAttribute("data-show", "0")
+                if (title !== null)
+                    title.setAttribute("data-show", "0")
+                handleArchetypeSelected("Bard")
                 break
 
             default:
