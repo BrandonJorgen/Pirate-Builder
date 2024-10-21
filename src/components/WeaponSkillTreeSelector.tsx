@@ -21,8 +21,14 @@ export const WeaponSelected = createContext("")
 export default function WeaponSkillTreeSelector({ index = 0, handleClick, skillTreeMemoryButtonMemory, skillTreeFeedButtonMemoryFunction, pointTrackerValue, pointTrackerValueFunction, choiceButtonMemory, skillTreeFeedChoiceButtonMemoryFunction }: WeaponSkillTreeSelectorProps)
 {
     const greatswordButtonID = "greatsword-select-button"
+    const maceButtonID = "mace-select-button"
+    const swordButtonID = "sword-select-button"
     const wandButtonID = "wand-select-button"
+    const scepterButtonID = "scepter-select-button"
+    const spellbookButtonID = "spellbook-select-button"
     const bowButtonID = "bow-select-button"
+    const shieldButtonID = "shield-select-button"
+    const focusButtonID = "focus-select-button"
 
     let [ selectedWeapon, setSelectedWeapon ] = useState(" ")
 
@@ -135,8 +141,14 @@ export default function WeaponSkillTreeSelector({ index = 0, handleClick, skillT
 
             <div id="weapon-selector-buttons" data-show="1">
                 <BasicButton index={0} id={greatswordButtonID} icon={"./icons/Class_Icons/FighterIcon.PNG"} tooltipSortClass={"weapon-select"} tooltipSide={"bottom"} tooltipText={"Greatsword"} handleClick={SelectWeapon} />
-                <BasicButton index={1} id={wandButtonID} icon={"./icons/Class_Icons/MageIcon.PNG"} tooltipSortClass={"weapon-select"} tooltipSide={"bottom"} tooltipText={"Wand"} handleClick={SelectWeapon} />
-                <BasicButton index={2} id={bowButtonID} icon={"./icons/Class_Icons/RangerIcon.PNG"} tooltipSortClass={"weapon-select"} tooltipSide={"bottom"} tooltipText={"Bow"} handleClick={SelectWeapon} />
+                <BasicButton index={1} id={maceButtonID} icon={"./icons/Class_Icons/FighterIcon.PNG"} tooltipSortClass={"weapon-select"} tooltipSide={"bottom"} tooltipText={"1H Mace \n Coming Soon Wave 1"} handleClick={SelectWeapon} />
+                <BasicButton index={2} id={swordButtonID} icon={"./icons/Class_Icons/FighterIcon.PNG"} tooltipSortClass={"weapon-select"} tooltipSide={"bottom"} tooltipText={"1H Sword \n Coming Soon Wave 1"} handleClick={SelectWeapon} />
+                <BasicButton index={3} id={wandButtonID} icon={"./icons/Class_Icons/MageIcon.PNG"} tooltipSortClass={"weapon-select"} tooltipSide={"bottom"} tooltipText={"Wand"} handleClick={SelectWeapon} />
+                <BasicButton index={4} id={scepterButtonID} icon={"./icons/Class_Icons/MageIcon.PNG"} tooltipSortClass={"weapon-select"} tooltipSide={"bottom"} tooltipText={"Scepter \n Coming Soon Wave 1"} handleClick={SelectWeapon} />
+                <BasicButton index={5} id={spellbookButtonID} icon={"./icons/Class_Icons/MageIcon.PNG"} tooltipSortClass={"weapon-select"} tooltipSide={"bottom"} tooltipText={"Spellbook \n Coming Soon Wave 1"} handleClick={SelectWeapon} />
+                <BasicButton index={6} id={bowButtonID} icon={"./icons/Class_Icons/RangerIcon.PNG"} tooltipSortClass={"weapon-select"} tooltipSide={"bottom"} tooltipText={"Bow"} handleClick={SelectWeapon} />
+                <BasicButton index={7} id={shieldButtonID} icon={"./icons/Class_Icons/FighterIcon.PNG"} tooltipSortClass={"weapon-select"} tooltipSide={"bottom"} tooltipText={"Shield \n Coming Soon Wave 1"} handleClick={SelectWeapon} />
+                <BasicButton index={8} id={focusButtonID} icon={"./icons/Class_Icons/MageIcon.PNG"} tooltipSortClass={"weapon-select"} tooltipSide={"bottom"} tooltipText={"Focus \n Coming Soon Wave 1"} handleClick={SelectWeapon} />
             </div>
 
             <WeaponSelected.Provider value={selectedWeapon}>

@@ -37,3 +37,33 @@
 {
     visibility: hidden;
 }
+
+#mace-select-button
+{
+    opacity: 25%;
+}
+
+#sword-select-button
+{
+    opacity: 25%;
+}
+
+#scepter-select-button
+{
+    opacity: 25%;
+}
+
+#spellbook-select-button
+{
+    opacity: 25%;
+}
+
+#shield-select-button
+{
+    opacity: 25%;
+}
+
+#focus-select-button
+{
+    opacity: 25%;
+}
