@@ -42,33 +42,33 @@ export default function SkillChoice({
     let tooltip: HTMLCollectionOf<Element>
 
     setTimeout(() => {
-        tooltip = document.getElementsByClassName("skill-choice-" + index + "-tooltip")
+        tooltip = document.getElementsByClassName("skill-choice-" + buttonIndex + "-" + index + "-tooltip")
     }, 100)
 
     function onHover()
     {
-        if (tooltip === undefined || tooltip[buttonIndex] === undefined)
+        if (tooltip === undefined || tooltip[0] === undefined)
             return
 
-        tooltip[buttonIndex].setAttribute("data-show", "1")
+        tooltip[0].setAttribute("data-show", "1")
     }
 
     function onHoverLeave()
     {
-        if (tooltip === undefined || tooltip[buttonIndex] === undefined)
+        if (tooltip === undefined || tooltip[0] === undefined)
             return
 
-        tooltip[buttonIndex].setAttribute("data-show", "0")
+        tooltip[0].setAttribute("data-show", "0")
     }
 
     function HandleClick(event: any)
     {
-        if (tooltip === undefined || tooltip[buttonIndex] === undefined)
+        if (tooltip === undefined || tooltip[0] === undefined)
         {
             clickFunction(event)
         }
 
-        tooltip[buttonIndex].setAttribute("data-show", "0")
+        tooltip[0].setAttribute("data-show", "0")
         clickFunction(event)
     }
 
@@ -77,7 +77,7 @@ export default function SkillChoice({
             <img className="skill-choice-icon" id={index.toString()} src={icon} alt="Icon" data-row="0" data-column="1"/>
             <span className="skill-choice-name" id={index.toString()} data-row="1" data-column="2">{name}</span>
             <span className="skill-choice-description" id={index.toString()} data-row="2" data-column="2">{description}</span>
-            <Tooltip sortClass={"skill-choice-" + index} index={index} side={tooltipSide} type={1} title={tooltipName} Cost={tooltipCost} range={tooltipRange} cooldown={tooltipCooldown} useOrCast={tooltipUseOrCast} castTime={tooltipCastTime} resource={tooltipResource} description={tooltipDescription} />
+            <Tooltip sortClass={"skill-choice-" + buttonIndex + "-" + index} index={index} side={tooltipSide} type={1} title={tooltipName} Cost={tooltipCost} range={tooltipRange} cooldown={tooltipCooldown} useOrCast={tooltipUseOrCast} castTime={tooltipCastTime} resource={tooltipResource} description={tooltipDescription} />
         </div>
     )
 }

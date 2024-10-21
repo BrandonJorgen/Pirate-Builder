@@ -64,7 +64,7 @@ export default function SkillButton({
     const [setup, setSetup] = useState(false)
     let skillButtons: HTMLCollectionOf<Element>
 
-    let tooltip: HTMLCollectionOf<Element>
+    let tooltip = document.getElementsByClassName(tooltipSortClass + "-" + index + "-tooltip")
 
     let choiceMenu: HTMLCollectionOf<Element>
     let [ choiceMade, setChoiceMade ] = useState(false)
@@ -79,11 +79,10 @@ export default function SkillButton({
 
     let hoverTimer: number | undefined = undefined
 
+
     setTimeout(() => {
 
         skillButtons = document.getElementsByClassName("skill-button")
-
-        tooltip = document.getElementsByClassName(tooltipSortClass + "-tooltip")
 
         choiceMenu = document.getElementsByClassName("skill-choice-menu")
 
@@ -174,6 +173,11 @@ export default function SkillButton({
             // Choice button
             if (buttonType === 2)
             {
+                if (tooltip === undefined || tooltip[index] === undefined)
+                    return
+        
+                tooltip[index].setAttribute("data-show", "0")
+
                 if (skillButtons[index].getAttribute("data-disabled") === "0")
                 {
                     if (choiceMenu[index].getAttribute("data-show") === "0")
@@ -209,37 +213,34 @@ export default function SkillButton({
             focused.current = "1"
         }
 
-        if (tooltip === undefined || tooltip[index] === undefined)
+        if (tooltip === undefined || tooltip[0] === undefined)
             return
 
         if ((buttonType === 0 || buttonType === 1 || buttonType === 3) && (choiceMade === false))
-            tooltip[index].setAttribute("data-show", "1")
+            tooltip[0].setAttribute("data-show", "1")
 
         if (buttonType === 2 && choiceMade === true && choiceMenuOpen === false)
-            tooltip[index].setAttribute("data-show", "1")
+            tooltip[0].setAttribute("data-show", "1")
     }
 
     function onHoverLeave()
     {
-        if (tooltip === undefined || tooltip[index] === undefined)
-            return
-
-        tooltip[index].setAttribute("data-show", "0")
+        tooltip[0].setAttribute("data-show", "0")
+        console.log("TURNED OFF TOOLTIP")
         
-        hoverTimer = setTimeout(() => {
-
-            if (buttonType === 2)
-            {
+        if (buttonType === 2) {
+            hoverTimer = setTimeout(() => {
+    
                 if (choiceMenuOpen === true)
                 {
                     choiceMenu[index].setAttribute("data-show", "0")
                     clearChoiceButton[index].setAttribute("data-show", "0")
                     setChoiceMenuOpen(false)
                 }
-                
-                focused.current = "0"
-            }
-        }, 500);
+                    
+                    focused.current = "0"
+            }, 500);
+        }
     }
 
     function GetChoiceData(id: number, data: string[])
@@ -289,7 +290,7 @@ export default function SkillButton({
             </div>
             
             <SkillChoicesMenu choices={choices} choiceDataReturn={GetChoiceData} side={choiceMenuSide} buttonIndex={index} showMenu={showMenu.current} />
-            <Tooltip sortClass={tooltipSortClass} index={index} side={tooltipSide} type={0} title={localTooltipData.current[1]} Cost={localTooltipData.current[2]} range={localTooltipData.current[3]} cooldown={localTooltipData.current[4]} castTime={localTooltipData.current[6]} description={localTooltipData.current[8]} useOrCast={localTooltipData.current[5]} resource={localTooltipData.current[7]} />
+            <Tooltip sortClass={tooltipSortClass + "-" + index} index={index} side={tooltipSide} type={0} title={localTooltipData.current[1]} Cost={localTooltipData.current[2]} range={localTooltipData.current[3]} cooldown={localTooltipData.current[4]} castTime={localTooltipData.current[6]} description={localTooltipData.current[8]} useOrCast={localTooltipData.current[5]} resource={localTooltipData.current[7]} />
         </div>
     )
 }
