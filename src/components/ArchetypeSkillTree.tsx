@@ -197,6 +197,8 @@ export default function ArchetypeSkillTree({ buttonMemory, feedMemoryFunction, p
                             skillButtons[connectedButtons[i]].setAttribute("data-selected", "0")
                             skillButtons[connectedButtons[i]].setAttribute("data-disabled", "1")
                             console.log("TYPE 0 BUTTON WASNT PRESSED AND WAS SET TO DISABLED AND NOT SELECTED")
+                            buttonMemoryArray[connectedButtons[i]] = 0
+                            feedMemoryFunction(buttonMemoryArray)
                             DecrementCount()
                         }
                         else
@@ -232,6 +234,8 @@ export default function ArchetypeSkillTree({ buttonMemory, feedMemoryFunction, p
                                 {
                                     skillButtons[connectedButtons[i]].setAttribute("data-selected", "0")
                                     skillButtons[connectedButtons[i]].setAttribute("data-disabled", "1")
+                                    buttonMemoryArray[connectedButtons[i]] = 0
+                                    feedMemoryFunction(buttonMemoryArray)
                                     DecrementCount()
                                     console.log("TYPE 1 BUTTON WASNT PRESSED AND WAS SET TO DISABLED AND NOT SELECTED")
                                 }
@@ -268,6 +272,8 @@ export default function ArchetypeSkillTree({ buttonMemory, feedMemoryFunction, p
                                     {
                                         skillButtons[connectedButtons[i]].setAttribute("data-selected", "0")
                                         skillButtons[connectedButtons[i]].setAttribute("data-disabled", "1")
+                                        buttonMemoryArray[connectedButtons[i]] = 0
+                                        feedMemoryFunction(buttonMemoryArray)
                                         DecrementCount()
                                         console.log("TYPE 3 BUTTON WASNT PRESSED AND WAS SET TO DISABLED AND NOT SELECTED")
                                     }
