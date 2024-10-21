@@ -91,7 +91,7 @@ export default function SkillTreeMenu()
         archetypeTreeButtonMemory.current = array
     }
 
-    function GetArchetypeChoiceButtonMemory(index: number, array: number[])
+    function GetArchetypeChoiceButtonMemory(_index: number, _array: number[])
     {
         
     }

@@ -90,6 +90,16 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
                 handleArchetypeSelected("Bard")
                 break
 
+            case "Tank":
+                if (buttonGroup !== null)
+                    buttonGroup.setAttribute("data-show", "0");
+                if (title !== null)
+                    title.setAttribute("data-show", "0");
+                archetypeSelected.current = 1
+                setSelectedArchetype("Tank-Skill-Tree")
+                handleArchetypeSelected("Tank")
+                break
+
             default:
                 console.log("Tree memory in Archetype Skill Tree Selector has failed to find an archetype")
         }
@@ -102,7 +112,12 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
         switch (localButtonID)
         {
             case tankButtonID:
-                console.log("Tank Selected")
+                setSelectedArchetype("Tank-Skill-Tree")
+                if (buttonGroup !== null)
+                    buttonGroup.setAttribute("data-show", "0")
+                if (title !== null)
+                    title.setAttribute("data-show", "0")
+                handleArchetypeSelected("Tank")
                 break
             
             case fighterButtonID:
@@ -164,13 +179,13 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
             <h2 id="archetype-selector-title" data-show="1">SELECT AN ARCHETYPE</h2>
 
             <div id="archetype-selector-buttons" data-show="1">
-                <BasicButton tooltipSortClass={"archetype-select"} index={0} id={tankButtonID} icon={"./icons/Class_Icons/TankIcon.PNG"} handleClick={SelectArchetype} tooltipSide={"bottom"} tooltipText={"Tank \n coming soon after A2 launch"} />
+                <BasicButton tooltipSortClass={"archetype-select"} index={0} id={tankButtonID} icon={"./icons/Class_Icons/TankIcon.PNG"} handleClick={SelectArchetype} tooltipSide={"bottom"} tooltipText={"Tank"} />
                 <BasicButton tooltipSortClass={"archetype-select"} index={1} id={fighterButtonID} icon={"./icons/Class_Icons/FighterIcon.PNG"} handleClick={SelectArchetype} tooltipSide={"bottom"} tooltipText={"Fighter"} />
-                <BasicButton tooltipSortClass={"archetype-select"} index={2} id={rogueButtonID} icon={"./icons/Class_Icons/RogueIcon.PNG"} handleClick={SelectArchetype} tooltipSide={"bottom"} tooltipText={"Rogue \n coming soon after A2 Post Patch"} />
+                <BasicButton tooltipSortClass={"archetype-select"} index={2} id={rogueButtonID} icon={"./icons/Class_Icons/RogueIcon.PNG"} handleClick={SelectArchetype} tooltipSide={"bottom"} tooltipText={"Rogue \n Coming soon Wave 3"} />
                 <BasicButton tooltipSortClass={"archetype-select"} index={3} id={rangerButtonID} icon={"./icons/Class_Icons/RangerIcon.PNG"} handleClick={SelectArchetype} tooltipSide={"bottom"} tooltipText={"Ranger"} />
                 <BasicButton tooltipSortClass={"archetype-select"} index={4} id={mageButtonID} icon={"./icons/Class_Icons/MageIcon.PNG"} handleClick={SelectArchetype} tooltipSide={"bottom"} tooltipText={"Mage"} />
-                <BasicButton tooltipSortClass={"archetype-select"} index={5} id={clericButtonID} icon={"./icons/Class_Icons/ClericIcon.PNG"} handleClick={SelectArchetype} tooltipSide={"bottom"} tooltipText={"Cleric \n coming soon after A2 launch"} />
-                <BasicButton tooltipSortClass={"archetype-select"} index={6} id={summonerButtonID} icon={"./icons/Class_Icons/SummonerIcon.PNG"} handleClick={SelectArchetype} tooltipSide={"bottom"} tooltipText={"Summoner \n coming soon after A2 Post Patch"} />
+                <BasicButton tooltipSortClass={"archetype-select"} index={5} id={clericButtonID} icon={"./icons/Class_Icons/ClericIcon.PNG"} handleClick={SelectArchetype} tooltipSide={"bottom"} tooltipText={"Cleric"} />
+                <BasicButton tooltipSortClass={"archetype-select"} index={6} id={summonerButtonID} icon={"./icons/Class_Icons/SummonerIcon.PNG"} handleClick={SelectArchetype} tooltipSide={"bottom"} tooltipText={"Summoner \n  Coming soon Wave 3"} />
                 <BasicButton tooltipSortClass={"archetype-select"} index={7} id={bardButtonID} icon={"./icons/Class_Icons/BardIcon.PNG"} handleClick={SelectArchetype} tooltipSide={"bottom"} tooltipText={"Bard"} />
             </div>
 

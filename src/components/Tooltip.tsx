@@ -96,6 +96,10 @@ export default function Tooltip({
             castTimeString = " Held"
             break;
 
+        case "channel":
+            castTimeString = " Channeled"
+            break;
+
         default:
             castTimeString = castTime + " Cast"
             break;
