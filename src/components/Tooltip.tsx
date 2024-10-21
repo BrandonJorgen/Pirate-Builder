@@ -89,15 +89,15 @@ export default function Tooltip({
             break;
         
         case "toggle":
-            castTimeString = " Toggled"
+            castTimeString = "Toggled"
             break;
 
         case "held":
-            castTimeString = " Held"
+            castTimeString = "Held"
             break;
 
         case "channel":
-            castTimeString = " Channeled"
+            castTimeString = "Channeled"
             break;
 
         default:
@@ -105,9 +105,26 @@ export default function Tooltip({
             break;
     }
 
-    if ((castTime === "N/A" || castTime === "") && useOrCast != "toggle")
+    if (castTime === "N/A" || castTime === "")
     {
-        castTimeString = ""
+        switch (useOrCast)
+        {
+            case "toggle":
+                castTimeString = "Toggled"
+                break;
+
+            case "held":
+                castTimeString = "Held"
+                break;
+
+            case "channel":
+                castTimeString = "Channeled"
+                break;
+
+            default:
+                castTimeString = ""
+                break;
+        }
     }
 
     return(

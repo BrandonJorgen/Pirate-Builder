@@ -100,6 +100,16 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
                 handleArchetypeSelected("Tank")
                 break
 
+            case "Cleric":
+                if (buttonGroup !== null)
+                    buttonGroup.setAttribute("data-show", "0");
+                if (title !== null)
+                    title.setAttribute("data-show", "0");
+                archetypeSelected.current = 1
+                setSelectedArchetype("Cleric-Skill-Tree")
+                handleArchetypeSelected("Cleric")
+                break
+
             default:
                 console.log("Tree memory in Archetype Skill Tree Selector has failed to find an archetype")
         }
@@ -152,7 +162,12 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
                 break
             
             case clericButtonID:
-                console.log("Cleric Selected")
+                setSelectedArchetype("Cleric-Skill-Tree")
+                if (buttonGroup !== null)
+                    buttonGroup.setAttribute("data-show", "0")
+                if (title !== null)
+                    title.setAttribute("data-show", "0")
+                handleArchetypeSelected("Cleric")
                 break
 
             case summonerButtonID:

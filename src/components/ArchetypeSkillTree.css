@@ -82,6 +82,22 @@
     top: -310px;
 }
 
+.skill-tree#Cleric-Skill-Tree
+{
+    position: absolute;
+    min-width: 925px;
+    width: 925px;
+    min-height: 900px;
+    height: 900px;
+    visibility: hidden;
+}
+
+.skill-tree#Cleric-Skill-Tree[data-show="1"]
+{
+    visibility: visible;
+    top: -310px;
+}
+
 .ranger-skill-tree-buttons
 {
     position: absolute;
@@ -125,6 +141,20 @@
 }
 
 .tank-skill-tree-buttons
+{
+    position: absolute;
+    display:grid;
+    grid-template-rows: repeat(12, 60px);
+    grid-template-columns: repeat(16, 60px);
+    gap: 30px;
+    min-width: 925px;
+    width: 925px;
+    min-height: 900px;
+    height: 900px;
+    overflow: auto;
+}
+
+.cleric-skill-tree-buttons
 {
     position: absolute;
     display:grid;
@@ -191,6 +221,14 @@
 }
 
 .tank-skill-tree-buttons-bg
+{
+    position: absolute;
+    background-color: rgba(17, 17, 17, 0.5);
+    width: 1100px;
+    height: 1000px;
+}
+
+.cleric-skill-tree-buttons-bg
 {
     position: absolute;
     background-color: rgba(17, 17, 17, 0.5);
