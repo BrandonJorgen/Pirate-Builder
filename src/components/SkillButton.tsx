@@ -226,7 +226,6 @@ export default function SkillButton({
     function onHoverLeave()
     {
         tooltip[0].setAttribute("data-show", "0")
-        console.log("TURNED OFF TOOLTIP")
         
         if (buttonType === 2) {
             hoverTimer = setTimeout(() => {

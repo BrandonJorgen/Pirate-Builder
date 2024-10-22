@@ -110,6 +110,9 @@
     min-height: 900px;
     height: 900px;
     overflow: auto;
+    scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
 }
 
 .mage-skill-tree-buttons
@@ -124,6 +127,9 @@
     min-height: 900px;
     height: 900px;
     overflow: auto;
+    scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
 }
 
 .bard-skill-tree-buttons
@@ -138,6 +144,9 @@
     min-height: 900px;
     height: 900px;
     overflow: auto;
+    scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
 }
 
 .tank-skill-tree-buttons
@@ -152,6 +161,9 @@
     min-height: 900px;
     height: 900px;
     overflow: auto;
+    scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
 }
 
 .cleric-skill-tree-buttons
@@ -166,6 +178,9 @@
     min-height: 900px;
     height: 900px;
     overflow: auto;
+    scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
 }
 
 .skill-tree-bg

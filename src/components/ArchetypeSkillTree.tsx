@@ -31,7 +31,19 @@ export default function ArchetypeSkillTree({ buttonMemory, feedMemoryFunction, p
 
     let buttonMemoryArray = buttonMemory
 
-    let useMemory = useRef(1) //used to determine if we need to access the button memory or not
+    let useMemory = useRef(1) //used to determine if we need to access the button memory or not+
+
+    let pos = { top: 0, left: 0, x: 0, y: 0 }
+
+    //Scroll settings
+    let selectedTreeScroll: any
+    const rangerTreeScroll = document.getElementsByClassName("ranger-skill-tree-buttons")
+    const mageTreeScroll = document.getElementsByClassName("mage-skill-tree-buttons")
+    const bardTreeScroll = document.getElementsByClassName("bard-skill-tree-buttons")
+
+    let rangerPos = useRef({top: 50, left: 50})
+    let magePos = useRef({top: 0, left: 200})
+    let bardPos = useRef({top: 200, left: 0})
 
     setTimeout(() => {
 
@@ -39,6 +51,30 @@ export default function ArchetypeSkillTree({ buttonMemory, feedMemoryFunction, p
         lines = document.getElementsByClassName("skill-connection")
 
         let treeToShow = document.getElementById(selectedArchetype)
+
+        switch (selectedArchetype)
+        {
+            case "Ranger-Skill-Tree":
+                rangerTreeScroll[0].scrollTop = rangerPos.current.top
+                rangerTreeScroll[0].scrollLeft = rangerPos.current.left
+                selectedTreeScroll = rangerTreeScroll[0]
+                break;
+
+            case "Mage-Skill-Tree":
+                mageTreeScroll[0].scrollTop = magePos.current.top
+                mageTreeScroll[0].scrollLeft = magePos.current.left
+                selectedTreeScroll = mageTreeScroll[0]
+                break;
+
+            case "Bard-Skill-Tree":
+                bardTreeScroll[0].scrollTop = bardPos.current.top
+                bardTreeScroll[0].scrollLeft = bardPos.current.left
+                selectedTreeScroll = bardTreeScroll[0]
+                break;
+
+            default:
+                break;
+        }
 
         if (treeToShow === null)
             return
@@ -84,7 +120,55 @@ export default function ArchetypeSkillTree({ buttonMemory, feedMemoryFunction, p
             }
         }
     }
+
+    const mouseDownHandler = function (e: any) {
+        if (selectedTreeScroll != undefined) {
+            pos = {
+                left: selectedTreeScroll.scrollLeft,
+                top: selectedTreeScroll.scrollTop,
+                x: e.clientX,
+                y: e.clientY,
+            }
+        }
+
+        document.addEventListener('mousemove', mouseMoveHandler)
+        document.addEventListener('mouseup', mouseUpHandler)
+    }
+
+    const mouseMoveHandler = function (e:any ) {
+        if (selectedTreeScroll != undefined) {
+            const dx = e.clientX - pos.x
+            const dy = e.clientY - pos.y
     
+            selectedTreeScroll.scrollTop = pos.top - dy
+            selectedTreeScroll.scrollLeft = pos.left - dx
+        }
+    }
+
+    const mouseUpHandler = function () {
+        document.removeEventListener('mousemove', mouseMoveHandler)
+        document.removeEventListener('mouseup', mouseUpHandler)
+
+        switch (selectedArchetype)
+        {
+            case "Ranger-Skill-Tree":
+                rangerPos.current.top = selectedTreeScroll.scrollTop
+                rangerPos.current.left = selectedTreeScroll.scrollLeft
+                break;
+            
+            case "Mage-Skill-Tree":
+                magePos.current.top = selectedTreeScroll.scrollTop
+                magePos.current.left = selectedTreeScroll.scrollLeft
+                break;
+
+            case "Bard-Skill-Tree":
+                bardPos.current.top = selectedTreeScroll.scrollTop
+                bardPos.current.left = selectedTreeScroll.scrollLeft
+                break;
+        }
+    }    
+
+    document.addEventListener('mousedown', mouseDownHandler)
 
     function handleClick(index:number, connectedButtons: number[], connectedLines: number[])
     {
