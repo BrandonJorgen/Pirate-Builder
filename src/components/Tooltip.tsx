@@ -93,11 +93,11 @@ export default function Tooltip({
             break;
 
         case "held":
-            castTimeString = "Held"
+            castTimeString = castTime + " Hold"
             break;
 
         case "channel":
-            castTimeString = "Channeled"
+            castTimeString = castTime + " Channel"
             break;
 
         default:
