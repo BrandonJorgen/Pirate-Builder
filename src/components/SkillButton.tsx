@@ -173,10 +173,10 @@ export default function SkillButton({
             // Choice button
             if (buttonType === 2)
             {
-                if (tooltip === undefined || tooltip[index] === undefined)
+                if (tooltip === undefined || tooltip[0] === undefined)
                     return
         
-                tooltip[index].setAttribute("data-show", "0")
+                tooltip[0].setAttribute("data-show", "0")
 
                 if (skillButtons[index].getAttribute("data-disabled") === "0")
                 {

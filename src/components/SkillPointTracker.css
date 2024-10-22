@@ -3,6 +3,7 @@
     position: absolute;
     left: 25px;
     top: 840px;
+    z-index: 1000;
 }
 
 .skill-point-tracker[data-maxed-out="24"]
