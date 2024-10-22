@@ -19,21 +19,21 @@ export default function SkillPointTracker({ id, parentName, maxPoints }: SkillPo
 
         return(
         <div className="skill-point-tracker" id={id} data-maxed-out="0">
-            <p>Skill Points: {context} / {maxPoints}</p>
+            <div className='skill-point-tracker-bg' />
+            <div className='skill-point-tracker-text'>Skill Points: {context} / {maxPoints}</div>
         </div>
-    )
+        )
     }
 
     if (parentName === "Weapon")
-        {
-            const context = useContext(weaponSkillPointCount)
-    
-            return(
-            <div className="skill-point-tracker" id={id} data-maxed-out={context}>
-                <p>Skill Points: {context} / {maxPoints}</p>
-            </div>
-        )
-        }
+    {
+        const context = useContext(weaponSkillPointCount)
 
-    
+        return(
+        <div className="skill-point-tracker" id={id} data-maxed-out={context}>
+            <div className='skill-point-tracker-bg' />
+            <div className='skill-point-tracker-text'>Skill Points: {context} / {maxPoints}</div>
+        </div>
+        )
+    }
 }

@@ -3,10 +3,29 @@
     position: absolute;
     left: 25px;
     top: 840px;
-    z-index: 1000;
 }
 
 .skill-point-tracker[data-maxed-out="24"]
 {
     color: red;
+}
+
+.skill-point-tracker-text
+{
+    position: absolute;
+    width: 200px;
+    top: 15px;
+    left: -40px;
+    color: white;
+}
+
+.skill-point-tracker-bg
+{
+    position: absolute;
+    background-color: black;
+    width: 150px;
+    height: 80px;
+    top:-30px;
+    left: -15px;
+    opacity: 50%;
 }
