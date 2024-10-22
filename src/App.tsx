@@ -1,4 +1,5 @@
 import './App.css'
+import Header from './components/Header'
 import SkillTreeMenu from './components/SkillTreeMenu'
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p> */}
         <SkillTreeMenu />
+        <Header />
     </div>
   )
 }

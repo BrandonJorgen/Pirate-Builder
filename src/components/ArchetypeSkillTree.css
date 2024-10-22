@@ -16,6 +16,7 @@
 {
     visibility: visible;
     top: -310px;
+    user-select: none;
 }
 
 .skill-tree#Ranger-Skill-Tree
