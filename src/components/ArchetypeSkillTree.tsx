@@ -901,7 +901,6 @@ export default function ArchetypeSkillTree({ buttonMemory, feedMemoryFunction, p
         </div>
 
         <div className='skill-tree' id='Cleric-Skill-Tree' data-show="0">
-            <div className='ranger-skill-tree-bg' />
 
             {/*<SkillConnection index={37} connectionType={0} styleLeft={'0px'} styleTop={'0px'} styleWidth={'75px'} styleRotation={'0'} />*/}
             {/*<SkillButton index={110} positionRow={'10'} positionColumn={'4'} buttonType={0} icon={'./Placeholder_Icon.png'} startsDisabled={'0'} startsSelected={false} canBePressed={true} connectedButtons={[]} connectedLines={[]} choices={[]} choiceMemory={0} updateChoiceMemoryFunction={UpdateChoiceMemory} tooltipSortClass={'skill-tree'} tooltipSide={'bottom'} tooltipName={'ABILITY'} tooltipCost={''} tooltipRange={''} tooltipCooldown={''} tooltipUseOrCast={''} tooltipCastTime={''} tooltipResource={''} tooltipDescription={'DESCRIPTION'} handleClick={handleClick} choiceMenuSide={''} />*/}
