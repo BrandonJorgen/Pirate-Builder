@@ -29,6 +29,7 @@ function App() {
       </p> */}
         <SkillTreeMenu />
         <Header />
+        <p>Many of the Archetype skill trees are WIP until after the first A2 weekend</p>
     </div>
   )
 }
