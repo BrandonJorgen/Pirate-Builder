@@ -1,11 +1,25 @@
 .skill-tree-menu
 {
-    background-color: rgba(27, 27, 27, 0.705);
     min-width: 925px;
     width: 925px;
     min-height: 940px;
     height: 940px;
     overflow: clip;
+}
+
+.skill-tree-menu-bg
+{
+    background-image: url("/Splash.png");
+    background-size: cover;
+    background-position-x: 50%;
+    background-position-y: 25%;
+    opacity: 25%;
+    min-width: 925px;
+    width: 925px;
+    min-height: 940px;
+    height: 940px;
+    overflow: clip;
+    position: absolute;
 }
 
 .react-tabs__tab-list

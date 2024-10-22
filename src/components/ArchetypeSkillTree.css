@@ -183,34 +183,6 @@
     user-select: none;
 }
 
-.skill-tree-bg
-{
-    position: absolute;
-    background-image: url("/Splash.png");
-    background-size: cover;
-    background-position-x: 50%;
-    background-position-y: 25%;
-    opacity: 25%;
-    min-width: 925px;
-    width: 925px;
-    min-height: 900px;
-    height: 900px;
-}
-
-.ranger-skill-tree-bg
-{
-    position: absolute;
-    background-image: url("/Splash.png");
-    background-size: cover;
-    background-position-x: 50%;
-    background-position-y: 25%;
-    opacity: 25%;
-    min-width: 925px;
-    width: 925px;
-    min-height: 900px;
-    height: 900px;
-}
-
 .ranger-skill-tree-buttons-bg
 {
     position: absolute;

@@ -127,6 +127,7 @@ export default function SkillTreeMenu()
 
     return(
     <div className='skill-tree-menu'>
+        <div className='skill-tree-menu-bg' />
         <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
             <TabList>
                 <Tab>Archetype</Tab>

@@ -512,7 +512,6 @@ export default function ArchetypeSkillTree({ buttonMemory, feedMemoryFunction, p
     return(
     <div className='archetype-skill-tree'>
         <div className='skill-tree' id='Fighter-Skill-Tree' data-show="0">
-            <div className='skill-tree-bg' />
 
             <archetypeSkillPointCount.Provider value={count}>
                 <SkillPointTracker id={'fighter-tree-skill-point-tracker'} maxPoints={31} parentName={'Archetype'} />
@@ -595,7 +594,6 @@ export default function ArchetypeSkillTree({ buttonMemory, feedMemoryFunction, p
         </div>
 
         <div className='skill-tree' id='Ranger-Skill-Tree' data-show="0">
-            <div className='ranger-skill-tree-bg' />
             
             {/*<SkillConnection index={37} connectionType={'0'} styleLeft={'0px'} styleTop={'0px'} styleWidth={'75px'} styleRotation={'0'} />*/}
             {/*<SkillButton index={0} positionRow={'1'} positionColumn={'1'} buttonType={0} icon={'./Placeholder_Icon.png'} startsDisabled={'1'} startsSelected={false} canBePressed={true} connectedButtons={[]} connectedLines={[]} choices={[]} choiceMemory={0} updateChoiceMemoryFunction={UpdateChoiceMemory} tooltipSortClass={'skill-tree'} tooltipSide={'bottom'} tooltipName={'PLACEHOLDER'} tooltipCost={''} tooltipRange={''} tooltipCooldown={''} tooltipUseOrCast={''} tooltipCastTime={''} tooltipResource={''} tooltipDescription={'PLACEHOLDER'} handleClick={handleClick} />*/}
@@ -689,12 +687,10 @@ export default function ArchetypeSkillTree({ buttonMemory, feedMemoryFunction, p
         </div>
 
         <div className='skill-tree' id='Mage-Skill-Tree' data-show="0">
-            <div className='mage-skill-tree-bg' />
 
             {/*<SkillConnection index={37} connectionType={0} styleLeft={'0px'} styleTop={'0px'} styleWidth={'75px'} styleRotation={'0'} />*/}
             {/*<SkillButton index={0} positionRow={'1'} positionColumn={'1'} buttonType={0} icon={'./Placeholder_Icon.png'} startsDisabled={'1'} startsSelected={false} canBePressed={true} connectedButtons={[]} connectedLines={[]} choices={[]} choiceMemory={0} updateChoiceMemoryFunction={UpdateChoiceMemory} tooltipSortClass={'skill-tree'} tooltipSide={'bottom'} tooltipName={'PLACEHOLDER'} tooltipCost={''} tooltipRange={''} tooltipCooldown={''} tooltipUseOrCast={''} tooltipCastTime={''} tooltipResource={''} tooltipDescription={'PLACEHOLDER'} handleClick={handleClick} />*/}
             <div className='mage-skill-tree-buttons'>
-                <div className='skill-tree-bg' />
 
                 <SkillConnection index={75} connectionType={0} styleLeft={'148px'} styleTop={'296px'} styleWidth={'300px'} styleRotation={'90'} />
                 <SkillConnection index={76} connectionType={0} styleLeft={'210px'} styleTop={'385px'} styleWidth={'150px'} styleRotation={'0'} />
@@ -757,7 +753,6 @@ export default function ArchetypeSkillTree({ buttonMemory, feedMemoryFunction, p
         </div>
 
         <div className='skill-tree' id='Bard-Skill-Tree' data-show="0">
-            <div className='skill-tree-bg' />
 
             {/*<SkillConnection index={37} connectionType={0} styleLeft={'0px'} styleTop={'0px'} styleWidth={'75px'} styleRotation={'0'} />*/}
             {/*<SkillButton index={110} positionRow={'10'} positionColumn={'4'} buttonType={0} icon={'./Placeholder_Icon.png'} startsDisabled={'0'} startsSelected={false} canBePressed={true} connectedButtons={[]} connectedLines={[]} choices={[]} choiceMemory={0} updateChoiceMemoryFunction={UpdateChoiceMemory} tooltipSortClass={'skill-tree'} tooltipSide={'bottom'} tooltipName={'ABILITY'} tooltipCost={''} tooltipRange={''} tooltipCooldown={''} tooltipUseOrCast={''} tooltipCastTime={''} tooltipResource={''} tooltipDescription={'DESCRIPTION'} handleClick={handleClick} choiceMenuSide={''} />*/}
@@ -817,13 +812,10 @@ export default function ArchetypeSkillTree({ buttonMemory, feedMemoryFunction, p
         </div>
 
         <div className='skill-tree' id='Tank-Skill-Tree' data-show="0">
-            <div className='skill-tree-bg' />
 
             {/*<SkillConnection index={37} connectionType={0} styleLeft={'0px'} styleTop={'0px'} styleWidth={'75px'} styleRotation={'0'} />*/}
             {/*<SkillButton index={110} positionRow={'10'} positionColumn={'4'} buttonType={0} icon={'./Placeholder_Icon.png'} startsDisabled={'0'} startsSelected={false} canBePressed={true} connectedButtons={[]} connectedLines={[]} choices={[]} choiceMemory={0} updateChoiceMemoryFunction={UpdateChoiceMemory} tooltipSortClass={'skill-tree'} tooltipSide={'bottom'} tooltipName={'ABILITY'} tooltipCost={''} tooltipRange={''} tooltipCooldown={''} tooltipUseOrCast={''} tooltipCastTime={''} tooltipResource={''} tooltipDescription={'DESCRIPTION'} handleClick={handleClick} choiceMenuSide={''} />*/}
             <div className='tank-skill-tree-buttons'>
-                <div className='tank-skill-tree-buttons-bg' />
-                
 
                 <SkillButton index={152} positionRow={'2'} positionColumn={'2'} buttonType={0} icon={'./icons/skill_Icons/Tank/Courageous_Icon.png'} startsDisabled={'0'} startsSelected={false} canBePressed={true} connectedButtons={[]} connectedLines={[]} choices={[]} choiceMemory={0} updateChoiceMemoryFunction={UpdateChoiceMemory} tooltipSortClass={'skill-tree'} tooltipSide={'right'} tooltipName={'Courageous'} tooltipCost={''} tooltipRange={''} tooltipCooldown={''} tooltipUseOrCast={''} tooltipCastTime={''} tooltipResource={''} tooltipDescription={'You build Courage through your valiant actions in combat, increasing your physical mitigation by 0.1% per point, up to 10%. Courage may also be spent on certain abilities and effects for other unique advantages on the battlefield.'} handleClick={handleClick} choiceMenuSide={'top'} />
                 <SkillButton index={153} positionRow={'2'} positionColumn={'3'} buttonType={0} icon={'./icons/skill_Icons/Tank/Vengeance_Icon.png'} startsDisabled={'0'} startsSelected={false} canBePressed={true} connectedButtons={[]} connectedLines={[]} choices={[]} choiceMemory={0} updateChoiceMemoryFunction={UpdateChoiceMemory} tooltipSortClass={'skill-tree'} tooltipSide={'bottom'} tooltipName={'Vengeance'} tooltipCost={''} tooltipRange={''} tooltipCooldown={''} tooltipUseOrCast={''} tooltipCastTime={''} tooltipResource={''} tooltipDescription={'Costs 25 Courage. Deal 100% physical damage to the closest enemy target in a 400 unit cone in front of you. On hit, gain 1 stack of Vengeance, granting temporary health equal to their Tank level +0.1% Max HP for 10 seconds per stackm up to 3 stacks. Generates 100% additional threat.'} handleClick={handleClick} choiceMenuSide={''} />
@@ -871,12 +863,11 @@ export default function ArchetypeSkillTree({ buttonMemory, feedMemoryFunction, p
         </div>
 
         <div className='skill-tree' id='Cleric-Skill-Tree' data-show="0">
-            <div className='skill-tree-bg' />
+            <div className='ranger-skill-tree-bg' />
 
             {/*<SkillConnection index={37} connectionType={0} styleLeft={'0px'} styleTop={'0px'} styleWidth={'75px'} styleRotation={'0'} />*/}
             {/*<SkillButton index={110} positionRow={'10'} positionColumn={'4'} buttonType={0} icon={'./Placeholder_Icon.png'} startsDisabled={'0'} startsSelected={false} canBePressed={true} connectedButtons={[]} connectedLines={[]} choices={[]} choiceMemory={0} updateChoiceMemoryFunction={UpdateChoiceMemory} tooltipSortClass={'skill-tree'} tooltipSide={'bottom'} tooltipName={'ABILITY'} tooltipCost={''} tooltipRange={''} tooltipCooldown={''} tooltipUseOrCast={''} tooltipCastTime={''} tooltipResource={''} tooltipDescription={'DESCRIPTION'} handleClick={handleClick} choiceMenuSide={''} />*/}
             <div className='cleric-skill-tree-buttons'>
-                <div className='cleric-skill-tree-buttons-bg' />
                 
                 <SkillButton index={189} positionRow={'2'} positionColumn={'2'} buttonType={0} icon={'./icons/skill_Icons/Cleric/DivinePower_Icon.png'} startsDisabled={'0'} startsSelected={false} canBePressed={true} connectedButtons={[]} connectedLines={[]} choices={[]} choiceMemory={0} updateChoiceMemoryFunction={UpdateChoiceMemory} tooltipSortClass={'skill-tree'} tooltipSide={'right'} tooltipName={'Divine Power'} tooltipCost={''} tooltipRange={''} tooltipCooldown={''} tooltipUseOrCast={''} tooltipCastTime={''} tooltipResource={''} tooltipDescription={'Healing and damage dealt build up your Divine Power resource, which increasees chance to critical hit with heals by up to 10% at full resource.'} handleClick={handleClick} choiceMenuSide={''} />
                 <SkillButton index={190} positionRow={'2'} positionColumn={'3'} buttonType={0} icon={'./icons/skill_Icons/Cleric/Smite_Icon.png'} startsDisabled={'0'} startsSelected={false} canBePressed={true} connectedButtons={[]} connectedLines={[]} choices={[]} choiceMemory={0} updateChoiceMemoryFunction={UpdateChoiceMemory} tooltipSortClass={'skill-tree'} tooltipSide={'bottom'} tooltipName={'Smite'} tooltipCost={''} tooltipRange={''} tooltipCooldown={''} tooltipUseOrCast={''} tooltipCastTime={''} tooltipResource={''} tooltipDescription={'Smite your target, dealing 150% radiant damage. If activated while in melee range of the target, this spell has no cast time. If the target is Burning, it becomes Conflagrating.'} handleClick={handleClick} choiceMenuSide={''} />
