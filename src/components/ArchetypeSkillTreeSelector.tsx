@@ -13,11 +13,12 @@ interface ArchetypeSelectorProps
     pointTrackerValueFunction: (value: number) => void,
     choiceButtonMemory: number[],
     skillTreeFeedChoiceButtonMemoryFunction: (index: number, array: number[]) => void,
+    tabNameFunction: (name: string) => void,
 }
 
 export const ArchetypeSelected = createContext("")
 
-export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, skillTreeMemoryButtonMemory, skillTreeFeedButtonMemoryFunction, pointTrackerValue, pointTrackerValueFunction, choiceButtonMemory, skillTreeFeedChoiceButtonMemoryFunction }: ArchetypeSelectorProps)
+export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, skillTreeMemoryButtonMemory, skillTreeFeedButtonMemoryFunction, pointTrackerValue, pointTrackerValueFunction, choiceButtonMemory, skillTreeFeedChoiceButtonMemoryFunction, tabNameFunction, }: ArchetypeSelectorProps)
 {
 
     const tankButtonID: string = "tank-select-button"
@@ -128,6 +129,7 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
                 if (title !== null)
                     title.setAttribute("data-show", "0")
                 handleArchetypeSelected("Tank")
+                tabNameFunction("Tank")
                 break
             
             case fighterButtonID:
@@ -137,6 +139,7 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
                 if (title !== null)
                     title.setAttribute("data-show", "0")
                 handleArchetypeSelected("Fighter")
+                tabNameFunction("Fighter")
                 break
 
             case rogueButtonID:
@@ -150,6 +153,7 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
                 if (title !== null)
                     title.setAttribute("data-show", "0")
                 handleArchetypeSelected("Ranger")
+                tabNameFunction("Ranger")
                 break
 
             case mageButtonID:
@@ -159,6 +163,7 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
                 if (title !== null)
                     title.setAttribute("data-show", "0")
                 handleArchetypeSelected("Mage")
+                tabNameFunction("Mage")
                 break
             
             case clericButtonID:
@@ -168,6 +173,7 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
                 if (title !== null)
                     title.setAttribute("data-show", "0")
                 handleArchetypeSelected("Cleric")
+                tabNameFunction("Cleric")
                 break
 
             case summonerButtonID:
@@ -181,6 +187,7 @@ export default function ArchetypeSkillTreeSelector({ handleArchetypeSelected, sk
                 if (title !== null)
                     title.setAttribute("data-show", "0")
                 handleArchetypeSelected("Bard")
+                tabNameFunction("Bard")
                 break
 
             default:
