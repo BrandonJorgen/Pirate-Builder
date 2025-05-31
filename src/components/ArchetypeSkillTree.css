@@ -172,7 +172,7 @@
     position: absolute;
     display:grid;
     grid-template-rows: repeat(12, 60px);
-    grid-template-columns: repeat(16, 60px);
+    grid-template-columns: repeat(13, 60px);
     gap: 30px;
     min-width: 925px;
     width: 925px;
